@@ -1,0 +1,11 @@
+{
+    "name": "ptx-homepage",
+    "version": "0.0.0",
+    "proxy":"http://localhost:8118",
+    "https-proxy":"http://localhost:8118",
+    "dependencies": {
+        "prototype": "latest",
+        "underscore": "latest"
+    },
+    "devDependencies": {}
+}
