@@ -5,7 +5,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
 
         pathConfig: {
-            app: 'app',
+            src: 'src',
             dist: 'dist',
             build: 'build',
             venders: 'venders'
@@ -31,11 +31,7 @@ module.exports = function (grunt) {
                 template: '{%= src %}'
             },
 
-            'build/scripts/application.js':'app/scripts/application.js',
-
-            'build/scripts/worker.js':'app/scripts/worker.js',
-
-            'build/scripts/sfm.js':'app/scripts/sfm.js'
+            'build/scripts/base.js':'app/scripts/application.js'
 
         },
 
@@ -54,25 +50,10 @@ module.exports = function (grunt) {
 
         },
 
-        emberTemplates: {
-            options: {
-                templateName: function (tName) {
-                    return tName.replace('app/templates/', '');
-                }
-            },
-
-            build: {
-                files: {
-                    'build/scripts/templates.js': 'app/templates/**/*.hbs'
-                }
-            }
-
-        },
-
         copy: {
             build: {
                 files: {
-                    'build/index.html': 'app/index.build.html'
+                    'build/index.html': 'src/index.build.html'
                 }
             }
         },
@@ -80,7 +61,7 @@ module.exports = function (grunt) {
         compass: {
 
             options: {
-                sassDir: 'app/styles/scss'
+                sassDir: 'src/styles/scss'
             },
 
             build: {
@@ -103,8 +84,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'neuter',
-        'concat_sourcemap:unittest',
-        'emberTemplates:build',
         'compass:build',
         'copy:build'
     ]);

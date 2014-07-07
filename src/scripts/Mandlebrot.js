@@ -1,8 +1,9 @@
 (function(){
     'use strict';
 
-    PTX.Mandlebrot = function(){
+    PTX.Mandlebrot = Class.create(PTX.VisualGraph, {
 
-    };
+
+    });
 
 })();

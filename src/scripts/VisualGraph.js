@@ -1,8 +1,6 @@
 (function(){
     'use strict';
 
-    PTX.VisualGraph = function () {
-
-    };
+    PTX.VisualGraph = Class.create();
 
 })();
