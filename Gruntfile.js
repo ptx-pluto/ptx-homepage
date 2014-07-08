@@ -31,7 +31,7 @@ module.exports = function (grunt) {
                 template: '{%= src %}'
             },
 
-            'build/scripts/base.js':'app/scripts/application.js'
+            'build/scripts/app.js':'src/scripts/base.js'
 
         },
 
