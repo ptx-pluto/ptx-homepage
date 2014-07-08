@@ -18,6 +18,30 @@
         result[increase] = colorOffset;
         result[decrease] = 255-colorOffset;
         return result;
-    }
+    };
+
+    PTX.complexProduct = function(r1, i1, r2, i2) {
+        var r = r1*r2 - i1*i2,
+            i = r1*i2 + i1*r2;
+        return [r,i];
+    };
+
+    PTX.complexSquare = function(r,i){
+        return PTX.complexProduct(r,i,r,i);
+    };
+
+    PTX.complexModule = function(r,i){
+        return Math.sqrt(r*r + i*i);
+    };
+
+    PTX.promiseReady = function(){
+        return new Promise(function(resolve, reject){
+            document.onreadystatechange = function(){
+                if (document.readyState === 'complete') {
+                    resolve();
+                }
+            };
+        });
+    };
 
 }());
