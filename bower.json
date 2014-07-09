@@ -4,8 +4,10 @@
     "proxy":"http://localhost:8118",
     "https-proxy":"http://localhost:8118",
     "dependencies": {
+        "jquery": "latest",
         "prototype.js": "latest",
-        "underscore": "latest"
+        "underscore": "latest",
+        "rsvp": "latest"
     },
     "devDependencies": {}
 }

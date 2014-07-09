@@ -5,15 +5,18 @@
 
         initialize: function($super, options){
 
+            var width = jQuery(window).width(),
+                height = jQuery(window).height();
+
             _.defaults(options, {
                 iterLimit: 200,
-                scale: 350,
+                scale: width/3,
                 moduleLimit: 20,
                 container: document.body,
-                width: 800,
-                height: 700,
-                rowOrigin: 350,
-                colOrigin: 550,
+                width: width,
+                height: height,
+                rowOrigin: Math.floor(height/2),
+                colOrigin: Math.floor(width * 0.70),
                 fps: 30
             });
 
