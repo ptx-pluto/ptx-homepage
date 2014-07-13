@@ -10,6 +10,6 @@ require('./*');
 
 //PTX.promiseReady().then(function(){});
 
-jQuery(function(){
-    var g = new PTX.Mandelbrot({});
-});
+//jQuery(function(){
+//    new PTX.Mandelbrot({});
+//});
