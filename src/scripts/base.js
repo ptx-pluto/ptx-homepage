@@ -10,6 +10,7 @@ require('./*');
 
 //PTX.promiseReady().then(function(){});
 
-//jQuery(function(){
+jQuery(function(){
 //    new PTX.Mandelbrot({});
-//});
+    new PTX.HexagonGrid({});
+});

@@ -1,38 +1,84 @@
 (function(){
     'use strict';
 
-    var $ = jQuery;
-
     PTX.HexagonGrid = Class.create({
 
         initialize: function(options){
             _.defaults(options, {
                 $container: document.body,
-                lineLimit: 5,
-                tileSize: 300,
-                tilePadding: 5
+                rows: 5,
+                cols: 8,
+                edge: 100
             });
             _.extend(this, options);
-            this.lines = [[]];
-            this.verticalDelta = this.tileSize*(1-Math.sqrt(3)/6);
-            $(this.$container).css('display', 'relative');
+
+            var _self = this,
+                tileWidth = 2 * this.edge * Math.cos(Math.PI/6),
+                rowDelta = 1.5 * this.edge,
+                lineDelta = tileWidth/2;
+
+            this.tileWidth = 2 * this.edge * Math.cos(Math.PI/6);
+            this.rowDelta = 1.5 * this.edge;
+            this.lineDelta = lineDelta = tileWidth/2;
+
+            var promiseAllTiles = [];
+
+            this.$ = Snap(1400, 800);
+
+            this.combined = [];
+
+            this.lines = _.range(this.rows).map(function(row){
+                var ld = row % 2 === 0 ? 0 : lineDelta;
+                return _self.$.svg(ld, row*rowDelta);
+            });
+
+            this.grid = this.lines.map(function(line){
+                return _.range(_self.cols).map(function(col){
+                    var newTile = new PTX.HexagonTile({
+                        grid: _self,
+                        edge: _self.edge,
+                        $line: line,
+                        $container: line.svg(col*tileWidth, 0)
+                    });
+                    promiseAllTiles.push(newTile.promiseAppear());
+                    return newTile;
+                });
+            });
+
+            Promise.all(promiseAllTiles).then(this.trippleTileTest.bind(this));
+
         },
 
-        addOne: function(){
-            var newTile = $('<div/>').addClass('hexagon-tile');
-            var line;
-            if (_.last(this.lines).length < this.lineLimit) {
-                line = _.last(this.lines);
-            }
-            else {
-                line = [];
-                this.lines.push(line);
-            }
-            newTile
-                .css('top', this.lines.length*this.verticalDelta)
-                .css('left', line.length*this.tileSize)
-                .appendTo(this.$container);
-            line.push(newTile);
+        getTile: function(row, col){
+            return this.grid[row][col];
+        },
+
+        getTilePosition: function(row, col){
+            return [
+                    row % 2 === 0 ? col*this.tileWidth : col*this.tileWidth + this.lineDelta,
+                    row * this.rowDelta
+            ];
+        },
+
+        trippleTileTest: function(){
+            var position = this.getTilePosition(1,1);
+            var testTiles = [
+                this.getTile(1,2),
+                this.getTile(1,1),
+                this.getTile(2,2)
+            ];
+            var testTripple = new PTX.TrippleHexagonTile({
+                tiles: testTiles,
+                grid: this,
+                isUp: false,
+                $container: this.$.svg(position[0], position[1]),
+                edge: this.edge
+            });
+
+            return Promise.all(testTiles.map(function(tile){
+                return tile.promiseFade();
+            })).then(testTripple.promiseAppear.bind(testTripple));
+
         }
 
     });
