@@ -6,8 +6,8 @@
         initialize: function(options){
             _.defaults(options, {
                 $container: document.body,
-                rows: 5,
-                cols: 8,
+                rows: 6,
+                cols: 9,
                 edge: 100
             });
             _.extend(this, options);
@@ -20,6 +20,9 @@
             this.tileWidth = 2 * this.edge * Math.cos(Math.PI/6);
             this.rowDelta = 1.5 * this.edge;
             this.lineDelta = lineDelta = tileWidth/2;
+            this.paddingTop = this.edge;
+            this.paddingLeft = this.tileWidth/2;
+
 
             var promiseAllTiles = [];
 
@@ -29,7 +32,7 @@
 
             this.lines = _.range(this.rows).map(function(row){
                 var ld = row % 2 === 0 ? 0 : lineDelta;
-                return _self.$.svg(ld, row*rowDelta);
+                return _self.$.svg(ld-_self.paddingLeft, row*rowDelta-_self.paddingTop);
             });
 
             this.grid = this.lines.map(function(line){
@@ -71,9 +74,10 @@
         },
 
         getTilePosition: function(row, col){
+            var xbase = col*this.tileWidth-this.paddingLeft;
             return [
-                    row % 2 === 0 ? col*this.tileWidth : col*this.tileWidth + this.lineDelta,
-                    row * this.rowDelta
+                    row % 2 === 0 ? xbase : xbase + this.lineDelta,
+                    row * this.rowDelta-this.paddingTop
             ];
         },
 
