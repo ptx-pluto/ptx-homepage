@@ -45,8 +45,25 @@
                 });
             });
 
-            Promise.all(promiseAllTiles).then(this.trippleTileTest.bind(this));
+            var testTiles1 = [
+                this.getTile(1,2),
+                this.getTile(1,1),
+                this.getTile(2,2)
+            ];
 
+            var testTiles2 = [
+                this.getTile(2,3),
+                this.getTile(2,4),
+                this.getTile(3,3)
+            ];
+
+            Promise.all(promiseAllTiles)
+                .then(function(){
+                    return _self.trippleTileTest(testTiles1, _self.getTilePosition(1,1));
+                })
+                .then(function(){
+                    return _self.trippleTileTest(testTiles2, _self.getTilePosition(2,3));
+                });
         },
 
         getTile: function(row, col){
@@ -60,25 +77,17 @@
             ];
         },
 
-        trippleTileTest: function(){
-            var position = this.getTilePosition(1,1);
-            var testTiles = [
-                this.getTile(1,2),
-                this.getTile(1,1),
-                this.getTile(2,2)
-            ];
+        trippleTileTest: function(tiles, offsets){
             var testTripple = new PTX.TrippleHexagonTile({
-                tiles: testTiles,
+                tiles: tiles,
                 grid: this,
                 isUp: false,
-                $container: this.$.svg(position[0], position[1]),
+                $container: this.$.svg(offsets[0], offsets[1]),
                 edge: this.edge
             });
-
-            return Promise.all(testTiles.map(function(tile){
+            return Promise.all(tiles.map(function(tile){
                 return tile.promiseFade();
             })).then(testTripple.promiseAppear.bind(testTripple));
-
         }
 
     });

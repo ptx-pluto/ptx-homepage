@@ -5,7 +5,8 @@
     PTX.TrippleHexagonTile = Class.create(PTX.HexagonTile, {
 
         initialize: function(options){
-            var innerRatio = 0.9;
+            var innerRatio = 0.9,
+                frameRatio = 0.8;
 
             this.tiles = options.tiles;
             this.isUp = options.isUp;
@@ -22,13 +23,25 @@
                 this.centerY = 1.5*this.edge;
             }
 
+            this.$img = this.$.image('http://classes.yale.edu/fractals/Vlinders.gif', 0, 0, 350, 350);
+
             if (this.isUp) {
                 this.$inner = this.$.polygon(getTripleHexagonArray(this.isUp, this.centerX, this.centerY, this.edge*innerRatio));
+                this.$frame = this.$.polygon(getTripleHexagonArray(this.isUp, this.centerX, this.centerY, this.edge*frameRatio));
             }
             else {
-                this.$inner = this.$.polygon(getDownTrippleHexagonArray(this.centerX, this.centerY, this.edge, 0.9));
+                this.$inner = this.$.polygon(getDownTrippleHexagonArray(this.centerX, this.centerY, this.edge, innerRatio));
+                this.$frame = this.$.polygon(getDownTrippleHexagonArray(this.centerX, this.centerY, this.edge, frameRatio));
             }
 
+            this.$img.attr({
+                mask: this.$frame,
+                opacity: 0
+            });
+
+            this.$frame.attr({
+                fill: 'tomato'
+            });
 
             this.$inner.attr({
                 fill: 'none',
@@ -38,6 +51,14 @@
                 'stroke-dasharray': this.edges,
                 'stroke-linecap': 'square'
             });
+
+        },
+
+        promiseAppear: function(){
+            return this.promiseOutline()
+                .then(function(){
+                    return this.promiseAnimate(this.$img, { opacity: 1 }, 500);
+                }.bind(this));
         }
 
     });
