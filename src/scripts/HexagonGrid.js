@@ -1,38 +1,38 @@
 (function(){
     'use strict';
 
+    var $ = jQuery;
+
     PTX.HexagonGrid = Class.create({
 
         initialize: function(options){
             _.defaults(options, {
                 $container: document.body,
-                rows: 6,
+                rows: 7,
                 cols: 9,
                 edge: 100
             });
             _.extend(this, options);
 
-            var _self = this,
-                tileWidth = 2 * this.edge * Math.cos(Math.PI/6),
-                rowDelta = 1.5 * this.edge,
-                lineDelta = tileWidth/2;
+            var _self = this;
 
             this.tileWidth = 2 * this.edge * Math.cos(Math.PI/6);
             this.rowDelta = 1.5 * this.edge;
-            this.lineDelta = lineDelta = tileWidth/2;
+            this.lineDelta = this.tileWidth/2;
             this.paddingTop = this.edge;
             this.paddingLeft = this.tileWidth/2;
-
+            this.totalHeight = this.edge*1.5*(this.rows-1);
+            this.totalWidth = this.tileWidth*(this.cols+1);
 
             var promiseAllTiles = [];
 
-            this.$ = Snap(1400, 800);
+            this.$ = Snap(this.totalWidth, this.totalHeight);
 
             this.combined = [];
 
             this.lines = _.range(this.rows).map(function(row){
-                var ld = row % 2 === 0 ? 0 : lineDelta;
-                return _self.$.svg(ld-_self.paddingLeft, row*rowDelta-_self.paddingTop);
+                var pos = _self.getTilePosition(row, 0);
+                return _self.$.svg(pos[0], pos[1]);
             });
 
             this.grid = this.lines.map(function(line){
@@ -41,7 +41,7 @@
                         grid: _self,
                         edge: _self.edge,
                         $line: line,
-                        $container: line.svg(col*tileWidth, 0)
+                        $container: line.svg(col*_self.tileWidth, 0)
                     });
                     promiseAllTiles.push(newTile.promiseAppear());
                     return newTile;
