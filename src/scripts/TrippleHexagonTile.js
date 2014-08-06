@@ -24,12 +24,7 @@
 
             this.imgUrl = 'http://classes.yale.edu/fractals/Vlinders.gif';
 
-            if (this.isUp) {
-                this.$inner = this.$.polygon(getTripleHexagonArray(this.isUp, this.centerX, this.centerY, this.edge*this.innerRatio));
-            }
-            else {
-                this.$inner = this.$.polygon(getDownTrippleHexagonArray(this.centerX, this.centerY, this.edge, this.innerRatio));
-            }
+            this.$inner = this.$.polygon(getTripleHexagonArray(this.isUp, this.centerX, this.centerY, this.edge, this.innerRatio));
 
             this.$inner.attr({
                 fill: 'none',
@@ -46,12 +41,7 @@
             return PTX.promiseImg(this.imgUrl)
                 .then(function(){
                     this.$img = this.$.image(this.imgUrl, 0, 0, 350, 350);
-                    if (this.isUp) {
-                        this.$frame = this.$.polygon(getTripleHexagonArray(this.isUp, this.centerX, this.centerY, this.edge*this.frameRatio));
-                    }
-                    else {
-                        this.$frame = this.$.polygon(getDownTrippleHexagonArray(this.centerX, this.centerY, this.edge, this.frameRatio));
-                    }
+                    this.$frame = this.$.polygon(getTripleHexagonArray(this.isUp, this.centerX, this.centerY, this.edge, this.frameRatio));
                     this.$img.attr({
                         mask: this.$frame,
                         opacity: 0
@@ -72,41 +62,12 @@
 
     });
 
-    function getTripleHexagonArray(isUp, centerX, centerY, edge){
-        var dist = edge * Math.cos(Math.PI/6);
+    function getTripleHexagonArray(isUp, centerX, centerY, edge, ratio){
         if (isUp) {
-            return [
-                centerX, centerY-2*edge,
-                centerX+dist, centerY-1.5*edge,
-                centerX+dist, centerY-0.5*edge,
-                centerX+2*dist, centerY,
-                centerX+2*dist, centerY+edge,
-                centerX+dist, centerY+1.5*edge,
-                centerX, centerY+edge,
-                centerX-dist, centerY+1.5*edge,
-                centerX-2*dist, centerY+edge,
-                centerX-2*dist, centerY,
-                centerX-dist, centerY-0.5*edge,
-                centerX-dist, centerY-1.5*edge,
-                centerX, centerY-2*edge,
-            ];
+            return getUpTrippleHexagonArray(centerX, centerY, edge, ratio);
         }
         else {
-            return [
-                centerX, centerY+2*edge,
-                centerX+dist, centerY+1.5*edge,
-                centerX+dist, centerY+0.5*edge,
-                centerX+2*dist, centerY,
-                centerX+2*dist, centerY-edge,
-                centerX+dist, centerY-1.5*edge,
-                centerX, centerY-edge,
-                centerX-dist, centerY-1.5*edge,
-                centerX-2*dist, centerY-edge,
-                centerX-2*dist, centerY,
-                centerX-dist, centerY+0.5*edge,
-                centerX-dist, centerY+1.5*edge,
-                centerX, centerY+2*edge,
-            ];
+            return getDownTrippleHexagonArray(centerX, centerY, edge, ratio);
         }
     }
 
@@ -123,7 +84,19 @@
             y3 = centerY+edge/2;
 
         return [
-
+            x1, y1-e,
+            x1+d, y1-e/2,
+            x1+d, centerY-e/2,
+            x3+d, y3-e/2,
+            x3+d, y3+e/2,
+            x3, y3+e,
+            centerX, centerY+e,
+            x2, y2+e,
+            x2-d, y2+e/2,
+            x2-d, y2-e/2,
+            centerX-d, centerY-e/2,
+            x1-d, y1-e/2,
+            x1, y1-e
         ];
 
     }
@@ -157,6 +130,5 @@
         ];
 
     }
-
 
 }());

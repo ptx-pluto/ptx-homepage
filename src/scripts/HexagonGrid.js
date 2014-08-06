@@ -60,12 +60,24 @@
                 this.getTile(3,3)
             ];
 
+
+            var testTiles3 = [
+                this.getTile(2,5),
+                this.getTile(3,4),
+                this.getTile(3,5)
+            ];
+
+            var pos = [this.getTilePosition(3,4)[0], this.getTilePosition(2,5)[1]];
+
             Promise.all(promiseAllTiles)
                 .then(function(){
-                    return _self.trippleTileTest(testTiles1, _self.getTilePosition(1,1));
+                    return _self.trippleTileTest(testTiles1, _self.getTilePosition(1,1), false);
                 })
                 .then(function(){
-                    return _self.trippleTileTest(testTiles2, _self.getTilePosition(2,3));
+                    return _self.trippleTileTest(testTiles2, _self.getTilePosition(2,3), false);
+                })
+                .then(function(){
+                    return _self.trippleTileTest(testTiles3, pos, true);
                 });
         },
 
@@ -81,11 +93,11 @@
             ];
         },
 
-        trippleTileTest: function(tiles, offsets){
+        trippleTileTest: function(tiles, offsets, isUp){
             var testTripple = new PTX.TrippleHexagonTile({
                 tiles: tiles,
                 grid: this,
-                isUp: false,
+                isUp: isUp,
                 $container: this.$.svg(offsets[0], offsets[1]),
                 edge: this.edge
             });
