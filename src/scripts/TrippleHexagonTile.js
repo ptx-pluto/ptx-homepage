@@ -5,8 +5,7 @@
     PTX.TrippleHexagonTile = Class.create(PTX.HexagonTile, {
 
         initialize: function(options){
-            var innerRatio = 0.9,
-                frameRatio = 0.8;
+            var innerRatio = 0.9;
 
             this.tiles = options.tiles;
             this.isUp = options.isUp;
@@ -14,6 +13,7 @@
             this.$ = options.$container;
             this.edge = options.edge;
             this.edges = Math.ceil(this.edge*12);
+            this.frameRatio = 0.8;
 
             this.centerX = 2*this.edge * Math.cos(Math.PI/6);
             if (this.isUp) {
@@ -23,25 +23,15 @@
                 this.centerY = 1.5*this.edge;
             }
 
-            this.$img = this.$.image('http://classes.yale.edu/fractals/Vlinders.gif', 0, 0, 350, 350);
+            this.imgUrl = 'http://classes.yale.edu/fractals/Vlinders.gif';
+            //this.$img = this.$.image('http://classes.yale.edu/fractals/Vlinders.gif', 0, 0, 350, 350);
 
             if (this.isUp) {
                 this.$inner = this.$.polygon(getTripleHexagonArray(this.isUp, this.centerX, this.centerY, this.edge*innerRatio));
-                this.$frame = this.$.polygon(getTripleHexagonArray(this.isUp, this.centerX, this.centerY, this.edge*frameRatio));
             }
             else {
                 this.$inner = this.$.polygon(getDownTrippleHexagonArray(this.centerX, this.centerY, this.edge, innerRatio));
-                this.$frame = this.$.polygon(getDownTrippleHexagonArray(this.centerX, this.centerY, this.edge, frameRatio));
             }
-
-            this.$img.attr({
-                mask: this.$frame,
-                opacity: 0
-            });
-
-            this.$frame.attr({
-                fill: 'tomato'
-            });
 
             this.$inner.attr({
                 fill: 'none',
@@ -54,8 +44,29 @@
 
         },
 
+        promiseContent: function(){
+            return PTX.promiseImg(this.imgUrl)
+                .then(function(img, url){
+                    this.$img = this.$.image(this.imgUrl, 0, 0, 350, 350);
+                    if (this.isUp) {
+                        this.$frame = this.$.polygon(getTripleHexagonArray(this.isUp, this.centerX, this.centerY, this.edge*this.frameRatio));
+                    }
+                    else {
+                        this.$frame = this.$.polygon(getDownTrippleHexagonArray(this.centerX, this.centerY, this.edge, this.frameRatio));
+                    }
+                    this.$img.attr({
+                        mask: this.$frame,
+                        opacity: 0
+                    });
+                    this.$frame.attr({
+                        fill: 'tomato'
+                    });
+                }.bind(this));
+        },
+
         promiseAppear: function(){
             return this.promiseOutline()
+                .then(this.promiseContent.bind(this))
                 .then(function(){
                     return this.promiseAnimate(this.$img, { opacity: 1 }, 500);
                 }.bind(this));

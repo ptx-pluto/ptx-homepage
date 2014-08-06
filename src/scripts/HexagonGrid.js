@@ -20,7 +20,7 @@
             this.rowDelta = 1.5 * this.edge;
             this.lineDelta = this.tileWidth/2;
             this.paddingTop = this.edge;
-            this.paddingLeft = this.tileWidth/2;
+            this.paddingLeft = 20+this.tileWidth/2;
             this.totalHeight = this.edge*1.5*(this.rows-1);
             this.totalWidth = this.tileWidth*(this.cols+1);
 

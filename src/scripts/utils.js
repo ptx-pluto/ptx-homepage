@@ -44,4 +44,14 @@
         });
     };
 
+    PTX.promiseImg = function(url){
+        return new Promise(function(resolve, reject){
+            var img = document.createElement('img');
+            img.onload = function(){
+                resolve(img, url);
+            };
+            img.src = url;
+        });
+    };
+
 }());
