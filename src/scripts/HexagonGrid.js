@@ -64,10 +64,11 @@
 
             Promise.all(promiseAllTiles)
                 .then(function(){
-                    return _self.trippleTileTest(testTiles1, _self.getTilePosition(1,1), false);
-                })
-                .then(function(){
-                    return _self.trippleTileTest(testTiles2, pos, true);
+                    return Promise.all([
+                        _self.getTile(2,4).promiseContent('http://www.vision-call.co.uk/images/stories/events/sample.jpg'),
+                        _self.trippleTileTest(testTiles1, _self.getTilePosition(1,1), false),
+                        _self.trippleTileTest(testTiles2, pos, true)
+                    ]);
                 });
         },
 

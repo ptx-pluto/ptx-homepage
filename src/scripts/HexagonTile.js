@@ -28,6 +28,26 @@
             });
         },
 
+        promiseContent: function(url){
+            this.imgUrl = url;
+            return PTX.promiseImg(this.imgUrl)
+                .then(function(){
+                    this.$img = this.$.image(this.imgUrl, 0, 0, 350, 350);
+                    this.$frame = this.$.polygon(getHexagonArray(this.centerX, this.centerY, this.edge*0.8));
+                    this.$img.attr({
+                        mask: this.$frame,
+                        opacity: 0
+                    });
+                    this.$frame.attr({
+                        fill: 'tomato'
+                    });
+                    return Promise.all([
+                        this.promiseAnimate(this.$img, { 'opacity': 1 }, 500),
+                        this.promiseAnimate(this.$inner, { 'fill': 'none' }, 500)
+                    ]);
+                }.bind(this));
+        },
+
         promiseAppear: function(){
             return this.promiseOutline()
                 .then(this.promiseFill.bind(this));
