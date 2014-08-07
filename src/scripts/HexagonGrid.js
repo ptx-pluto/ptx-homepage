@@ -1,7 +1,6 @@
 (function(){
-    'use strict';
 
-    var $ = jQuery;
+    'use strict';
 
     PTX.HexagonGrid = Class.create({
 
@@ -14,8 +13,6 @@
             });
             _.extend(this, options);
 
-            var _self = this;
-
             this.tileWidth = 2 * this.edge * Math.cos(Math.PI/6);
             this.rowDelta = 1.5 * this.edge;
             this.lineDelta = this.tileWidth/2;
@@ -23,12 +20,16 @@
             this.paddingLeft = 20+this.tileWidth/2;
             this.totalHeight = this.edge*1.5*(this.rows-1);
             this.totalWidth = this.tileWidth*(this.cols+1);
-
-            var promiseAllTiles = [];
-
             this.$ = Snap(this.totalWidth, this.totalHeight);
 
-            this.combined = [];
+            PTX.promiseDelay(500)
+                .then(this.promiseGrid.bind(this))
+                .then(this.promiseContent.bind(this));
+        },
+
+        promiseGrid: function(){
+            var _self = this,
+                promiseAllTiles = [];
 
             this.lines = _.range(this.rows).map(function(row){
                 var pos = _self.getTilePosition(row, 0);
@@ -47,31 +48,28 @@
                     return newTile;
                 });
             });
+            return Promise.all(promiseAllTiles);
+        },
 
+        promiseContent: function(){
             var tripple1 = [
                 [1,2],
                 [1,1],
                 [2,2]
             ];
-
             var tripple2 = [
                 [2,3],
                 [3,2],
                 [3,3]
             ];
-
             var testimg1 = 'http://classes.yale.edu/fractals/Vlinders.gif';
             var testimg2 = 'http://www.jaeger-hansen.dk/testimage-sjh.jpg';
             var testimg3 = 'http://www.vision-call.co.uk/images/stories/events/sample.jpg';
-
-            Promise.all(promiseAllTiles)
-                .then(function(){
-                    return Promise.all([
-                        _self.getTile(2,4).promiseContent(testimg3),
-                        _self.createTrippleTile(tripple1).promiseContent(testimg1),
-                        _self.createTrippleTile(tripple2).promiseContent(testimg2)
-                    ]);
-                });
+            return Promise.all([
+                this.getTile(2,4).promiseContent(testimg3),
+                this.createTrippleTile(tripple1).promiseContent(testimg1),
+                this.createTrippleTile(tripple2).promiseContent(testimg2)
+            ]);
         },
 
         getTile: function(row, col){

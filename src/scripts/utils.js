@@ -54,4 +54,10 @@
         });
     };
 
+    PTX.promiseDelay = function(time){
+        return new Promise(function(resolve, reject){
+            _.delay(resolve, time);
+        });
+    };
+
 }());
