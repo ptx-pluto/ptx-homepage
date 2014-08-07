@@ -22,8 +22,6 @@
                 this.centerY = 1.5*this.edge;
             }
 
-            this.imgUrl = 'http://classes.yale.edu/fractals/Vlinders.gif';
-
             this.$inner = this.$.polygon(getTripleHexagonArray(this.isUp, this.centerX, this.centerY, this.edge, this.innerRatio));
 
             this.$inner.attr({
@@ -37,8 +35,15 @@
 
         },
 
-        promiseContent: function(){
+        promiseContent: function(url){
+            this.imgUrl = url;
             return PTX.promiseImg(this.imgUrl)
+                .then(function(){
+                    return Promise.all(this.tiles.map(function(tile){
+                        return tile.promiseFade();
+                    }));
+                }.bind(this))
+                .then(this.promiseOutline.bind(this))
                 .then(function(){
                     this.$img = this.$.image(this.imgUrl, 0, 0, 350, 350);
                     this.$frame = this.$.polygon(getTripleHexagonArray(this.isUp, this.centerX, this.centerY, this.edge, this.frameRatio));
@@ -49,7 +54,13 @@
                     this.$frame.attr({
                         fill: 'tomato'
                     });
+                    return this.promiseAnimate(this.$img, { opacity: 1 }, 500);
                 }.bind(this));
+        },
+
+
+        promiseOutline: function(){
+            return this.promiseAnimate(this.$inner, { 'stroke-dashoffset': 0 }, 1000);
         },
 
         promiseAppear: function(){
