@@ -58,11 +58,11 @@
         },
 
         promiseOutline: function(){
-            return this.promiseAnimate(this.$inner, { 'stroke-dashoffset': 0 }, 1200);
+            return this.promiseAnimate(this.$inner, { 'stroke-dashoffset': 0 }, 900);
         },
 
         promiseFill: function(){
-            return this.promiseAnimate(this.$inner, { 'fill': '#FF0526' }, 500);
+            return this.promiseAnimate(this.$inner, { 'fill': '#FF0526' }, 1000);
         },
 
         promiseBlink: function(){
@@ -92,6 +92,17 @@
             centerX-dist, centerY-edge/2,
             centerX, centerY-edge
         ];
+/*
+        return [
+            centerX, centerY-edge,
+                centerX-dist, centerY-edge/2,
+                centerX-dist, centerY+edge/2,
+            centerX, centerY+edge,
+                centerX+dist, centerY+edge/2,
+                centerX+dist, centerY-edge/2,
+            centerX, centerY-edge
+        ];
+*/
     }
 
     PTX.getHexagonArray = getHexagonArray;

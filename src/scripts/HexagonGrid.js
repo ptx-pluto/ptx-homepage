@@ -36,7 +36,7 @@
                 return _self.$.svg(pos[0], pos[1]);
             });
 
-            this.grid = this.lines.map(function(line){
+            this.grid = this.lines.map(function(line, row){
                 return _.range(_self.cols).map(function(col){
                     var newTile = new PTX.HexagonTile({
                         grid: _self,
@@ -44,7 +44,7 @@
                         $line: line,
                         $container: line.svg(col*_self.tileWidth, 0)
                     });
-                    promiseAllTiles.push(newTile.promiseAppear());
+                    promiseAllTiles.push(PTX.promiseDelay(300*(row+col)).then(newTile.promiseAppear.bind(newTile)));
                     return newTile;
                 });
             });
@@ -58,15 +58,15 @@
                 [2,2]
             ];
             var tripple2 = [
-                [2,3],
-                [3,2],
-                [3,3]
+                [2,4],
+                [3,3],
+                [3,4]
             ];
             var testimg1 = 'http://classes.yale.edu/fractals/Vlinders.gif';
             var testimg2 = 'http://www.jaeger-hansen.dk/testimage-sjh.jpg';
             var testimg3 = 'http://www.vision-call.co.uk/images/stories/events/sample.jpg';
             return Promise.all([
-                this.getTile(2,4).promiseContent(testimg3),
+                this.getTile(2,3).promiseContent(testimg3),
                 this.createTrippleTile(tripple1).promiseContent(testimg1),
                 this.createTrippleTile(tripple2).promiseContent(testimg2)
             ]);
