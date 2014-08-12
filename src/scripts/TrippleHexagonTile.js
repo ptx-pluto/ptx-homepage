@@ -52,7 +52,7 @@
                     this.$img = this.$.image(this.imgUrl, 0, 0, 350, 350);
                     this.$frame = this.$.polygon(getTripleHexagonArray(this.isUp, this.centerX, this.centerY, this.edge, this.frameRatio));
                     this.$img.attr({
-                        mask: this.$frame,
+                        'clip-path': this.$frame,
                         opacity: 0
                     });
                     this.$frame.attr({

@@ -37,7 +37,7 @@
                 this.$img = this.$.image(this.imgUrl, 0, 0, 350, 350);
                 this.$frame = this.$.polygon(getHexagonArray(this.centerX, this.centerY, this.edge*0.8));
                 this.$img.attr({
-                    mask: this.$frame,
+                    'clip-path': this.$frame,
                     opacity: 0
                 });
                 this.$frame.attr({
