@@ -37,12 +37,16 @@
 
         promiseContent: function(url){
             this.imgUrl = url;
-            return PTX.promiseImg(this.imgUrl)
-                .then(function(){
-                    return Promise.all(this.tiles.map(function(tile){
-                        return tile.promiseFade();
-                    }));
-                }.bind(this))
+            return Promise.all([
+                PTX.promiseImg(this.imgUrl),
+                this.tiles[0].promiseAppear(),
+                this.tiles[1].promiseAppear(),
+                this.tiles[2].promiseAppear()
+            ]).then(function(){
+                return Promise.all(this.tiles.map(function(tile){
+                    return tile.promiseFade();
+                }));
+            }.bind(this))
                 .then(this.promiseOutline.bind(this))
                 .then(function(){
                     this.$img = this.$.image(this.imgUrl, 0, 0, 350, 350);

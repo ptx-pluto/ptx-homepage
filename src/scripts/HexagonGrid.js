@@ -22,9 +22,11 @@
             this.totalWidth = this.tileWidth*(this.cols+1);
             this.$ = Snap(this.totalWidth, this.totalHeight);
 
-            PTX.promiseDelay(500)
-                .then(this.promiseGrid.bind(this))
-                .then(this.promiseContent.bind(this));
+            PTX.promiseDelay(500).then(function(){
+                this.promiseGrid();
+                this.promiseContent();
+            }.bind(this));
+
         },
 
         promiseGrid: function(){
@@ -44,7 +46,8 @@
                         $line: line,
                         $container: line.svg(col*_self.tileWidth, 0)
                     });
-                    promiseAllTiles.push(PTX.promiseDelay(300*(row+col)).then(newTile.promiseAppear.bind(newTile)));
+                    //promiseAllTiles.push(PTX.promiseDelay(300*(row+col)).then(newTile.promiseAppear.bind(newTile)));
+                    promiseAllTiles.push(newTile.promiseAppear(300*(row+col)));
                     return newTile;
                 });
             });
