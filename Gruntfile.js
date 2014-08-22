@@ -25,6 +25,16 @@ module.exports = function (grunt) {
 
         },
 
+        browserify: {
+
+            build: {
+                files: {
+                    'build/scripts/app.js': 'src/scripts/base.js'
+                }
+            }
+
+        },
+
         neuter :{
 
             options: {
@@ -81,9 +91,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-ember-templates');
     grunt.loadNpmTasks('grunt-neuter');
+    grunt.loadNpmTasks('grunt-browserify');
 
     grunt.registerTask('build', [
-        'neuter',
+        'browserify:build',
         'compass:build',
         'copy:build'
     ]);
