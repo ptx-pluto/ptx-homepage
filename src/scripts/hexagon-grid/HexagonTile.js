@@ -5,28 +5,6 @@ var outlines = require('./outlines.js'),
 
 module.exports = Class.create({
 
-    initialize: function(options){
-        var innerRatio = 0.9;
-
-        this.grid = options.grid;
-        this.$line = options.$line;
-        this.$ = options.$container;
-        this.edge = options.edge;
-        this.edges = Math.ceil(this.edge*6);
-        this.centerX = this.edge * Math.cos(Math.PI/6);
-        this.centerY = this.edge;
-
-        this.$inner = this.$.polygon(outlines.getHexagonArray(this.centerX, this.centerY, this.edge*innerRatio));
-        this.$inner.attr({
-            fill: 'none',
-            stroke: 'red',
-            'stroke-width': 5,
-            'stroke-dashoffset': this.edges,
-            'stroke-dasharray': this.edges,
-            'stroke-linecap': 'square'
-        });
-    },
-
     promiseContent: function(url){
         this.imgUrl = url;
         return Promise.all([
@@ -81,12 +59,6 @@ module.exports = Class.create({
             .then(function(){
                 return _self.promiseAnimate(_self.$, { 'opacity': 1 }, 200);
             });
-    },
-
-    promiseAnimate: function($el, attrs, duration){
-        return new Promise(function(resolve, reject){
-            $el.animate(attrs, duration, null, resolve);
-        });
     }
 
 });
