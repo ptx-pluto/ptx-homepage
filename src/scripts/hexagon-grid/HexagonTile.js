@@ -25,40 +25,8 @@ module.exports = Class.create({
                 this.promiseAnimate(this.$inner, { 'fill': 'none' }, 800)
             ]);
         }.bind(this));
-    },
-
-    promiseAppear: function(delay){
-        if (!this.promiseReady) {
-            if (delay) {
-                this.promiseReady = utils.promiseDelay(delay)
-                    .then(this.promiseOutline.bind(this))
-                    .then(this.promiseFill.bind(this));
-            }
-            else {
-                this.promiseReady = this.promiseOutline().then(this.promiseFill.bind(this));
-            }
-        }
-        return this.promiseReady;
-    },
-
-    promiseFade: function(){
-        return this.promiseAnimate(this.$, { opacity: 0 }, 500);
-    },
-
-    promiseOutline: function(){
-        return this.promiseAnimate(this.$inner, { 'stroke-dashoffset': 0 }, 900);
-    },
-
-    promiseFill: function(){
-        return this.promiseAnimate(this.$inner, { 'fill': '#FF0526' }, 1000);
-    },
-
-    promiseBlink: function(){
-        var _self = this;
-        return this.promiseAnimate(_self.$, { 'opacity': 0 }, 200)
-            .then(function(){
-                return _self.promiseAnimate(_self.$, { 'opacity': 1 }, 200);
-            });
     }
+
+
 
 });

@@ -11,13 +11,17 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
 
     tagName: 'svg',
 
-    snap: null,
+    grid: Ember.computed.alias('parentView.parentView'),
 
-    grid: null,
+    line: Ember.computed.alias('parentView'),
 
-    $line: null,
+    row: Ember.computed.alias('parentView.row'),
 
-    edge: null,
+    col: function(){
+        return this.get('grid.childViews').indexOf(this);
+    }.property(),
+
+    edge: Ember.computed.alias('parentView.edge'),
 
     edges: function(){
         return Math.ceil(this.get('edge')*6);
@@ -33,7 +37,7 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
 
     didInsertElement: function(){
         var handler = Snap(this.get('element'));
-        this.set('snap', handler);
+        this.set('$snap', handler);
 
         var innerRatio = 0.9;
         var edge = this.get('edge'),
@@ -51,34 +55,54 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
             'stroke-linecap': 'square'
         });
         this.set('$inner', $inner);
+    },
+
+    promiseAppear: function(delay){
+        if (!this.promiseReady) {
+            if (delay) {
+                this.promiseReady = utils.promiseDelay(delay)
+                    .then(this.promiseOutline.bind(this))
+                    .then(this.promiseFill.bind(this));
+            }
+            else {
+                this.promiseReady = this.promiseOutline().then(this.promiseFill.bind(this));
+            }
+        }
+        return this.promiseReady;
+    },
+
+
+    promiseOutline: function(){
+        return this.promiseAnimate(this.$inner, { 'stroke-dashoffset': 0 }, 900);
+    },
+
+    promiseFill: function(){
+        return this.promiseAnimate(this.$inner, { 'fill': '#FF0526' }, 1000);
     }
 
+    /*
+        initialize: function(options){
+            var innerRatio = 0.9;
 
+            this.grid = options.grid;
+            this.$line = options.$line;
+            this.$ = options.$container;
+            this.edge = options.edge;
+            this.edges = Math.ceil(this.edge*6);
+            this.centerX = this.edge * Math.cos(Math.PI/6);
+            this.centerY = this.edge;
 
-
-/*
-    initialize: function(options){
-        var innerRatio = 0.9;
-
-        this.grid = options.grid;
-        this.$line = options.$line;
-        this.$ = options.$container;
-        this.edge = options.edge;
-        this.edges = Math.ceil(this.edge*6);
-        this.centerX = this.edge * Math.cos(Math.PI/6);
-        this.centerY = this.edge;
-
-        this.$inner = this.$.polygon(outlines.getHexagonArray(this.centerX, this.centerY, this.edge*innerRatio));
-        this.$inner.attr({
-            fill: 'none',
-            stroke: 'red',
-            'stroke-width': 5,
-            'stroke-dashoffset': this.edges,
-            'stroke-dasharray': this.edges,
-            'stroke-linecap': 'square'
-        });
-    },
-*/
+            this.$inner = this.$.polygon(outlines.getHexagonArray(this.centerX, this.centerY, this.edge*innerRatio));
+            this.$inner.attr({
+                fill: 'none',
+                stroke: 'red',
+                'stroke-width': 5,
+                'stroke-dashoffset': this.edges,
+                'stroke-dasharray': this.edges,
+                'stroke-linecap': 'square'
+            });
+        },
+    */
 
 
 });

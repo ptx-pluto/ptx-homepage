@@ -76,17 +76,6 @@ module.exports = Class.create({
         ]);
     },
 
-    getTile: function(row, col){
-        return this.grid[row][col];
-    },
-
-    getTilePosition: function(row, col){
-        var xbase = col*this.tileWidth-this.paddingLeft;
-        return [
-                row % 2 === 0 ? xbase : xbase + this.lineDelta,
-                row * this.rowDelta-this.paddingTop
-        ];
-    },
 
     createTrippleTile: function(tiles){
         var _self = this;
