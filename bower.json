@@ -4,6 +4,7 @@
     "proxy":"http://localhost:8118",
     "https-proxy":"http://localhost:8118",
     "dependencies": {
+        "ember": "latest",
         "jquery": "latest",
         "prototype.js": "latest",
         "underscore": "latest",

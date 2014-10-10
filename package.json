@@ -1,7 +1,6 @@
 {
     "name": "ptx-homepage",
     "version": "0.0.0",
-    "dependencies": {},
     "devDependencies": {
         "grunt": "latest",
         "grunt-contrib-uglify": "latest",
@@ -15,6 +14,9 @@
         "grunt-browserify": "latest",
         "mocha": "latest",
         "should": "latest"
+    },
+    "dependencies": {
+        "snapsvg": "latest"
     },
     "engines": {
         "node": ">=0.8.0"
