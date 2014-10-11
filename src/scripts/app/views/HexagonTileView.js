@@ -12,6 +12,12 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
 
     tagName: 'svg',
 
+    classNames: [
+        'hexagon-grid__tile'
+    ],
+
+    isReady: false,
+
     grid: Ember.computed.alias('parentView.parentView'),
 
     line: Ember.computed.alias('parentView'),
@@ -61,16 +67,23 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
     },
 
     promiseAppear: function(delay){
-        if (!this.promiseReady) {
-            if (delay) {
-                this.promiseReady = utils.promiseDelay(delay)
-                    .then(this.promiseOutline.bind(this))
-                    .then(this.promiseFill.bind(this));
-            }
-            else {
-                this.promiseReady = this.promiseOutline().then(this.promiseFill.bind(this));
-            }
+
+        if (this.promiseReady) {
+            return this.promiseReady;
         }
+
+        this.promiseReady = Promise
+            .resolve()
+            .then(function(){
+                if (delay) {
+                    return utils.promiseDelay(delay);
+                }
+            })
+            .then(this.promiseOutline.bind(this))
+            .then(this.promiseFill.bind(this))
+            .then(function(){
+                this.set('isReady', true);
+            }.bind(this));
         return this.promiseReady;
     },
 

@@ -1,9 +1,4 @@
-@mixin clip-path($clip) {
-  -webkit-clip-path: $clip;
-  -moz-clip-path: $clip;
-  -ms-clip-path: $clip;
-  clip-path: $clip;
-}
+@import "partials/hexagon-tile";
 
 html, body {
   margin: 0;
@@ -17,56 +12,4 @@ img {
   padding: 0;
   margin: 0;
   border: 0;
-}
-
-$short-edge: 28.86%;
-$tile-size: 300px;
-
-
-.hexagon {
-  width: $tile-size;
-  height: $tile-size;
-  background-color: black;
-  @include clip-path(polygon(50% 0%, 100% $short-edge, 100% 100%-$short-edge, 50% 100%, 0% 100%-$short-edge, 0% $short-edge, 50% 0%));
-}
-
-.hexagon-tile {
-  position: absolute;
-  width: $tile-size;
-  height: $tile-size;
-  background-color: black;
-  @include clip-path(polygon(50% 0%, 100% $short-edge, 100% 100%-$short-edge, 50% 100%, 0% 100%-$short-edge, 0% $short-edge, 50% 0%));
-}
-
-$origin-top: 300px;
-$origin-left: 300px;
-$tile-padding: 5px;
-
-
-$tile-col-delta: $tile-size+$tile-padding;
-$tile-row-delta: $tile-size*0.7114+$tile-padding;
-$tile-row-col-delta: $tile-size/2+$tile-padding;
-
-#tile-1 {
-  background-color: red;
-  top: $origin-top;
-  left: $origin-left;
-}
-
-#tile-2 {
-  background-color: orangered;
-  top: $origin-top;
-  left: $origin-left+$tile-col-delta;
-}
-
-#tile-3 {
-  background-color: yellow;
-  top: $origin-top+$tile-row-delta;
-  left: $origin-left+$tile-row-col-delta;
-}
-
-#tile-3 {
-  background-color: greenyellow;
-  top: $origin-top+$tile-row-delta;
-  left: $origin-left+$tile-row-col-delta;
 }
