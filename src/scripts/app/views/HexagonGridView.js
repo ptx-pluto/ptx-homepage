@@ -1,6 +1,7 @@
 'use strict';
 
-var _ = require('underscore');
+var _ = require('underscore'),
+    Snap = require('snapsvg');
 
 var HexagonRowView = require('./HexagonRowView.js');
 
@@ -23,6 +24,14 @@ module.exports = Ember.CollectionView.extend({
             return _.range(cols);
         });
         this.set('content', grid);
+
+        this.tileWidth = 2 * this.edge * Math.cos(Math.PI/6);
+        this.rowDelta = 1.5 * this.edge;
+        this.lineDelta = this.tileWidth/2;
+        this.paddingTop = this.edge;
+        this.paddingLeft = 20+this.tileWidth/2;
+        this.totalHeight = this.edge*1.5*(this.rows-1);
+        this.totalWidth = this.tileWidth*(this.cols+1);
     },
 
     getTile: function(row,col){
@@ -35,6 +44,16 @@ module.exports = Ember.CollectionView.extend({
                 row % 2 === 0 ? xbase : xbase + this.lineDelta,
                 row * this.rowDelta-this.paddingTop
         ];
+    },
+
+    didInsertElement: function(){
+        var handler = Snap(this.get('element'));
+        this.set('$snap', handler);
+
+        handler.attr({
+            height: this.totalHeight,
+            width: this.totalWidth
+        });
     }
 
 });

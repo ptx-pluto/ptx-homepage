@@ -15,6 +15,7 @@ module.exports = Class.create({
         });
         _.extend(this, options);
 
+        /*
         this.tileWidth = 2 * this.edge * Math.cos(Math.PI/6);
         this.rowDelta = 1.5 * this.edge;
         this.lineDelta = this.tileWidth/2;
@@ -23,7 +24,7 @@ module.exports = Class.create({
         this.totalHeight = this.edge*1.5*(this.rows-1);
         this.totalWidth = this.tileWidth*(this.cols+1);
         this.$ = Snap(this.totalWidth, this.totalHeight);
-
+*/
         utils.promiseDelay(500).then(function(){
             this.promiseGrid();
             this.promiseContent();

@@ -39,6 +39,12 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
         var handler = Snap(this.get('element'));
         this.set('$snap', handler);
 
+        var col = this.get('col');
+
+        handler.attr({
+            x: col*this.tileWidth
+        });
+
         var innerRatio = 0.9;
         var edge = this.get('edge'),
             edges = this.get('edges'),
