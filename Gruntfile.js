@@ -38,13 +38,13 @@ module.exports = function (grunt) {
         emberTemplates: {
             options: {
                 templateName: function (tName) {
-                    return tName.replace('src/app/templates/', '');
+                    return tName.replace('src/scripts/app/templates/', '');
                 }
             },
 
             build: {
                 files: {
-                    'build/scripts/templates.js': 'src/app/templates/**/*.hbs'
+                    'build/scripts/templates.js': 'src/scripts/app/templates/**/*.hbs'
                 }
             }
 
@@ -85,6 +85,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'browserify:build',
+        'emberTemplates:build',
         'compass:build',
         'copy:build'
     ]);

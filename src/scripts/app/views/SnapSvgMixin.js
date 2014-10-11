@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = Ember.Mixin.extend({
+module.exports = Ember.Mixin.create({
 
     $snap: null,
 

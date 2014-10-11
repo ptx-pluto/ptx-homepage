@@ -31,7 +31,7 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
     }.property('edge'),
 
     centerY: function(){
-        this.get('edge');
+        return this.get('edge');
     }.property('edge'),
 
     didInsertElement: function(){
