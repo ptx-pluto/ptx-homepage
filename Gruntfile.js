@@ -35,6 +35,21 @@ module.exports = function (grunt) {
 
         },
 
+        emberTemplates: {
+            options: {
+                templateName: function (tName) {
+                    return tName.replace('src/app/templates/', '');
+                }
+            },
+
+            build: {
+                files: {
+                    'build/scripts/templates.js': 'src/app/templates/**/*.hbs'
+                }
+            }
+
+        },
+
         copy: {
             build: {
                 files: {
