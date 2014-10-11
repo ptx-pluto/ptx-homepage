@@ -16,6 +16,7 @@
         "should": "latest"
     },
     "dependencies": {
+        "underscore": "latest",
         "snapsvg": "latest"
     },
     "engines": {

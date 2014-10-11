@@ -1,7 +1,6 @@
 'use strict';
 
-var _ = require('underscore'),
-    Snap = require('snapsvg');
+var _ = require('underscore');
 
 var SnapSvgMixin = require('./SnapSvgMixin.js'),
     outlines = require('../../hexagon-grid/outlines.js'),
@@ -39,25 +38,25 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
         var handler = Snap(this.get('element'));
         this.set('$snap', handler);
 
-        var col = this.get('col');
-
-        handler.attr({
-            x: col*this.tileWidth
-        });
-
         var innerRatio = 0.9;
         var edge = this.get('edge'),
             edges = this.get('edges'),
             centerX = this.get('centerX'),
-            centerY = this.get('centerY');
+            centerY = this.get('centerY'),
+            col = this.get('col'),
+            tileWidth = 2 * edge * Math.cos(Math.PI/6);
+
+        handler.attr({
+            x: col * tileWidth
+        });
 
         var $inner = handler.polygon(outlines.getHexagonArray(centerX, centerY, edge*innerRatio));
         $inner.attr({
             fill: 'none',
             stroke: 'red',
             'stroke-width': 5,
-            'stroke-dashoffset': edges,
-            'stroke-dasharray': edges,
+//            'stroke-dashoffset': edges,
+//            'stroke-dasharray': edges,
             'stroke-linecap': 'square'
         });
         this.set('$inner', $inner);
@@ -79,11 +78,13 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
 
 
     promiseOutline: function(){
-        return this.promiseAnimate(this.$inner, { 'stroke-dashoffset': 0 }, 900);
+        var $inner = this.get('$inner');
+        return this.promiseAnimate($inner, { 'stroke-dashoffset': 0 }, 900);
     },
 
     promiseFill: function(){
-        return this.promiseAnimate(this.$inner, { 'fill': '#FF0526' }, 1000);
+        var $inner = this.get('$inner');
+        return this.promiseAnimate($inner, { 'fill': '#FF0526' }, 1000);
     }
 
     /*

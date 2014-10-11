@@ -1,7 +1,6 @@
 'use strict';
 
-var _ = require('underscore'),
-    Snap = require('snapsvg');
+var _ = require('underscore');
 
 var HexagonTileView = require('./HexagonTileView.js'),
     utils = require('../../utils.js');

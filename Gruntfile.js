@@ -29,32 +29,7 @@ module.exports = function (grunt) {
 
             build: {
                 files: {
-                    'build/scripts/app.js': 'src/scripts/base.js'
-                }
-            }
-
-        },
-
-        neuter :{
-
-            options: {
-                template: '{%= src %}'
-            },
-
-            'build/scripts/app.js':'src/scripts/base.js'
-
-        },
-
-        concat_sourcemap: {
-
-            unittest: {
-                files: {
-                    'build/scripts/sfmunittest.js': [
-                        '<%= pathConfig.venders %>/numericjs/src/numeric.js',
-                        '<%= pathConfig.venders %>/numericjs/src/svd.js',
-                        'app/scripts/SFM/**/*.js',
-                        'unittest/headers/SfmUnittestHeader.js'
-                    ]
+                    'build/scripts/app.js': 'src/scripts/app/application.js'
                 }
             }
 
