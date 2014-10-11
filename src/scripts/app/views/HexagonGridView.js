@@ -2,7 +2,9 @@
 
 var _ = require('underscore');
 
-var HexagonRowView = require('./HexagonRowView.js');
+var HexagonRowView = require('./HexagonRowView.js'),
+    settings = require('../settings.js'),
+    TILE_OUTLINE_DURATION = settings.TILE_OUTLINE_DURATION;
 
 module.exports = Ember.CollectionView.extend({
 
@@ -25,7 +27,7 @@ module.exports = Ember.CollectionView.extend({
     }.property('rows','cols'),
 
     getTile: function(row,col){
-        return this.get('childViews').findBy('content', row).get('childViews').findBy('content', col);
+        return this.get('childViews').findBy('row', row).get('childViews').findBy('col', col);
     },
 
     getTilePosition: function(row, col){
@@ -53,6 +55,18 @@ module.exports = Ember.CollectionView.extend({
             height: this.totalHeight,
             width: this.totalWidth
         });
+        this.showGrid();
+    },
+
+    showGrid: function(){
+        var rows = this.get('rows'),
+            cols = this.get('cols'),
+            row, col;
+        for (row=0; row<rows; row++) {
+            for (col=0; col<cols; col++) {
+                this.getTile(row,col).promiseAppear(TILE_OUTLINE_DURATION/3*(row+col)+1);
+            }
+        }
     }
 
 });

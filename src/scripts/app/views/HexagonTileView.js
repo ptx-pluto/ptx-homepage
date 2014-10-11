@@ -3,6 +3,8 @@
 var _ = require('underscore');
 
 var SnapSvgMixin = require('./SnapSvgMixin.js'),
+    settings = require('../settings.js'),
+    TILE_OUTLINE_DURATION = settings.TILE_OUTLINE_DURATION,
     outlines = require('../../hexagon-grid/outlines.js'),
     utils = require('../../utils.js');
 
@@ -51,8 +53,8 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
             fill: 'none',
             stroke: 'red',
             'stroke-width': 5,
-//            'stroke-dashoffset': edges,
-//            'stroke-dasharray': edges,
+            'stroke-dashoffset': edges,
+            'stroke-dasharray': edges,
             'stroke-linecap': 'square'
         });
         this.set('$inner', $inner);
@@ -75,12 +77,12 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
 
     promiseOutline: function(){
         var $inner = this.get('$inner');
-        return this.promiseAnimate($inner, { 'stroke-dashoffset': 0 }, 900);
+        return this.promiseAnimate($inner, { 'stroke-dashoffset': 0 }, TILE_OUTLINE_DURATION);
     },
 
     promiseFill: function(){
         var $inner = this.get('$inner');
-        return this.promiseAnimate($inner, { 'fill': '#FF0526' }, 1000);
+        return this.promiseAnimate($inner, { 'fill': '#FF0526' }, 500);
     }
 
     /*
