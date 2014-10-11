@@ -16,9 +16,7 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
 
     row: Ember.computed.alias('parentView.row'),
 
-    col: function(){
-        return this.get('grid.childViews').indexOf(this);
-    }.property(),
+    col: Ember.computed.alias('content'),
 
     edge: Ember.computed.alias('parentView.edge'),
 
@@ -30,9 +28,7 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
         return this.get('edge') * Math.cos(Math.PI/6);
     }.property('edge'),
 
-    centerY: function(){
-        return this.get('edge');
-    }.property('edge'),
+    centerY: Ember.computed.alias('edge'),
 
     didInsertElement: function(){
         var handler = Snap(this.get('element'));
