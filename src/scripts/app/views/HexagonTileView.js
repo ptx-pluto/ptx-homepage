@@ -87,12 +87,10 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
     },
 
     promiseAppear: function(delay){
-
-        if (this.promiseAppear) {
-            return this.promiseAppear;
+        if (this.appearPromise) {
+            return this.appearPromise;
         }
-
-        this.promiseAppear = Promise
+        this.appearPromise = Promise
             .resolve()
             .then(function(){
                 if (delay) {
@@ -103,9 +101,11 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
             .then(this.promiseFill.bind(this))
             .then(function(){
                 this.set('isReady', true);
-                this.readyCallback();
+                if (_.isFunction(this.readyCallback)) {
+                    this.readyCallback();
+                }
             }.bind(this));
-        return this.promiseAppear;
+        return this.appearPromise;
     },
 
 
