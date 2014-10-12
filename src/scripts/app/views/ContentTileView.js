@@ -2,7 +2,8 @@
 
 var TILE_TYPES = require('../content.js').TILE_TYPES,
     SnapSvgMixin = require('./SnapSvgMixin.js'),
-    outlines = require('../../hexagon-grid/outlines.js');
+    outlines = require('../../hexagon-grid/outlines.js'),
+    utils = require('../../utils.js');
 
 module.exports = Ember.View.extend(SnapSvgMixin, {
 
@@ -55,6 +56,9 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
                 return tiles.map(function(tile){
                     return tile.promiseFade();
                 });
+            })
+            .then(function(){
+                return utils.promiseDelay(600);
             })
             .then(function(){
                 return _self.promiseAppear();
