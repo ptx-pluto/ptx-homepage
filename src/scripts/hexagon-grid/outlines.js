@@ -1,5 +1,8 @@
+'use strict';
+
 module.exports.getTripleHexagonArray = getTripleHexagonArray;
 module.exports.getHexagonArray = getHexagonArray;
+module.exports.getTrippleTileConfig = getTrippleTileConfig;
 
 
 function getHexagonArray(centerX, centerY, edge){
@@ -93,5 +96,86 @@ function getDownTrippleHexagonArray(centerX, centerY, edge, ratio){
             x1-d, y1-e/2,
         x1, y1-e
     ];
+
+}
+
+function getTrippleTileConfig(tiles, grid){
+    var offsets, isUp;
+    if (tiles[0][0] === tiles[1][0]) {
+        arrangeTiles(tiles, 0, 1, 2);
+    }
+    else if (tiles[1][0] === tiles[2][0]) {
+        arrangeTiles(tiles, 1, 2, 0);
+    }
+    else if (tiles[0][0] === tiles[2][0]) {
+        arrangeTiles(tiles, 0, 2, 1);
+    }
+    else {
+        throw 'tiles does not form tripple tile';
+    }
+    isUp = getOrientation(tiles);
+    if (isUp) {
+        offsets = [
+            grid.getTilePosition(tiles[0][0], tiles[0][1])[0],
+            grid.getTilePosition(tiles[2][0], tiles[2][1])[1]
+        ];
+    }
+    else {
+        offsets = this.getTilePosition(tiles[0][0], tiles[0][1])
+    }
+
+    return new {
+        isUp: isUp,
+        position: offsets
+    };
+
+    function arrangeTiles(tiles, long1, long2, short){
+        var t1, t2, t3;
+        if (tiles[long1][1] === tiles[long2][1]+1) {
+            t1 = tiles[long2];
+            t2 = tiles[long1];
+            t3 = tiles[short];
+        }
+        else if (tiles[long1][1] === tiles[long2][1]-1) {
+            t1 = tiles[long1];
+            t2 = tiles[long2];
+            t3 = tiles[short];
+        }
+        else {
+            throw 'tiles does not form tripple tile';
+        }
+        tiles[0] = t1;
+        tiles[1] = t2;
+        tiles[2] = t3;
+    }
+
+    function getOrientation(tiles){
+        var longRow = tiles[0][0],
+            shortRow = tiles[2][0],
+            shortCol = tiles[2][1],
+            longCol = tiles[0][1];
+
+        var orientation;
+
+        if (shortRow === longRow+1) {
+            orientation = false;
+        }
+        else if (shortRow === longRow-1) {
+            orientation = true;
+        }
+        else {
+            throw 'tiles does not form tripple tile';
+        }
+
+        if (longRow%2===0 && shortCol===longCol) {
+            return orientation;
+        }
+        else if (longRow%2===1 && shortCol===longCol+1) {
+            return orientation;
+        }
+        else {
+            throw 'tiles does not form tripple tile';
+        }
+    }
 
 }
