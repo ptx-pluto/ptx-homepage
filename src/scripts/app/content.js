@@ -18,7 +18,9 @@ module.exports = [
         tileType: TILE_TYPES.SINGLE,
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/nabla.jpg',
-        tile: []
+        tiles: [
+            [2,3]
+        ]
     },
 
     {
@@ -27,7 +29,24 @@ module.exports = [
         tileType: TILE_TYPES.TRIPPLE,
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/profile.jpg',
-        tiles: []
+        tiles: [
+            [1,2],
+            [1,1],
+            [2,2]
+        ]
+    },
+
+    {
+        name: 'profile',
+        caption: 'this is a tripple tile',
+        tileType: TILE_TYPES.TRIPPLE,
+        contentType: CONTENT_TYPES.THUMBNAIL,
+        image: '/src/images/profile.jpg',
+        tiles: [
+            [2,4],
+            [3,3],
+            [3,4]
+        ]
     }
 
 ];
