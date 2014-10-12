@@ -19,7 +19,7 @@ module.exports = [
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/profile.jpg',
         tiles: [
-            { row: 2, col: 3 }
+            { row: 4, col: 3 }
         ]
     },
 
@@ -28,9 +28,9 @@ module.exports = [
         caption: 'this is a tripple tile',
         tileType: TILE_TYPES.TRIPPLE,
         contentType: CONTENT_TYPES.THUMBNAIL,
-        image: '/src/images/nabla.jpg',
+        image: '/src/images/profile.jpg',
         tiles: [
-            { row: 1, col: 2 },
+            { row: 2, col: 1 },
             { row: 1, col: 1 },
             { row: 2, col: 2 }
         ]
@@ -41,10 +41,10 @@ module.exports = [
         caption: 'this is a tripple tile',
         tileType: TILE_TYPES.TRIPPLE,
         contentType: CONTENT_TYPES.THUMBNAIL,
-        image: '/src/images/profile.jpg',
+        image: '/src/images/nabla.jpg',
         tiles: [
             { row: 2, col: 4 },
-            { row: 3, col: 3 },
+            { row: 2, col: 5 },
             { row: 3, col: 4 }
         ]
     }
