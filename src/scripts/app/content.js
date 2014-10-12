@@ -19,7 +19,7 @@ module.exports = [
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/nabla.jpg',
         tiles: [
-            [2,3]
+            { row: 2, col: 3 }
         ]
     },
 
@@ -30,9 +30,9 @@ module.exports = [
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/profile.jpg',
         tiles: [
-            [1,2],
-            [1,1],
-            [2,2]
+            { row: 1, col: 2 },
+            { row: 1, col: 1 },
+            { row: 2, col: 2 }
         ]
     },
 
@@ -43,9 +43,9 @@ module.exports = [
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/profile.jpg',
         tiles: [
-            [2,4],
-            [3,3],
-            [3,4]
+            { row: 2, col: 4 },
+            { row: 3, col: 3 },
+            { row: 3, col: 4 }
         ]
     }
 
