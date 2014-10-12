@@ -66,13 +66,33 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
         this.set('$inner', $inner);
     },
 
+    readyCallback: function(callback){
+        this.readyQueue = this.readyQueue || [];
+        this.readyQueue.push(callback);
+    },
+
+    promiseReady: function(){
+        if (this.get('isReady')) {
+            return Promise.resolve();
+        }
+        var _self = this;
+        if (!this.readyPromise) {
+            this.readyPromise = new Promise(function(resolve, reject){
+                _self.readyCallback = function(){
+                    resolve();
+                }
+            });
+        }
+        return this.readyPromise;
+    },
+
     promiseAppear: function(delay){
 
-        if (this.promiseReady) {
-            return this.promiseReady;
+        if (this.promiseAppear) {
+            return this.promiseAppear;
         }
 
-        this.promiseReady = Promise
+        this.promiseAppear = Promise
             .resolve()
             .then(function(){
                 if (delay) {
@@ -83,8 +103,9 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
             .then(this.promiseFill.bind(this))
             .then(function(){
                 this.set('isReady', true);
+                this.readyCallback();
             }.bind(this));
-        return this.promiseReady;
+        return this.promiseAppear;
     },
 
 
