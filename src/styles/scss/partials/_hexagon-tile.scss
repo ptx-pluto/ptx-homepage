@@ -1,3 +1,16 @@
+.hexagon-grid__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hexagon-grid__content-tiles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
 .hexagon-grid__tile {
 
   &:hover {
