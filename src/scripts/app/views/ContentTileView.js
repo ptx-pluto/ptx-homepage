@@ -12,16 +12,25 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
         'hexagon-grid__content-tile'
     ],
 
-    container: Ember.computed.alias('parentView.parentView'),
+    index: Ember.computed.alias('parentView.parentView'),
 
-    grid: Ember.computed.alias('container.grid'),
+    grid: Ember.computed.alias('index.grid'),
+
+    tiles: Ember.computed.alias('content.tiles'),
+
+    image: Ember.computed.alias('content.image'),
 
     didInsertElement: function(){
         var handler = Snap(this.get('element'));
         this.set('$snap', handler);
+        this.get('content').load();
     },
 
     onLoaded: function(){
+
+        if (!this.get('content.isLoaded')) {
+            return;
+        }
 
         var grid = this.get('grid'),
             tiles = this.get('tiles').map(function(tile){
@@ -29,7 +38,7 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
             }),
             _self = this;
 
-        switch (this.get('tileType')) {
+        switch (this.get('content.tileType')) {
             case TILE_TYPES.SINGLE:
                 this.initSingle();
                 break;
@@ -48,12 +57,14 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
                 });
             })
             .then(function(){
+                console.log('called');
                 return _self.promiseAppear();
             });
 
-    }.observes('controller.isLoaded'),
+    }.observes('content.isLoaded'),
 
     initSingle: function(){
+        console.log('enter');
         var innerRatio = 0.9,
             handler = this.get('$snap'),
             grid = this.get('grid'),
@@ -76,8 +87,8 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
             fill: 'none',
             stroke: 'red',
             'stroke-width': 5,
-            'stroke-dashoffset': edges,
-            'stroke-dasharray': edges,
+//            'stroke-dashoffset': edges,
+//            'stroke-dasharray': edges,
             'stroke-linecap': 'square'
         });
 
@@ -100,8 +111,11 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
 
         var tiles = this.get('tiles'),
             grid = this.get('grid'),
-            config = outlines.getTrippleTileConfig(tiles, grid),
-            isUp = config.isUp,
+            config = outlines.getTrippleTileConfig(tiles, grid);
+
+        console.log(config);
+
+        var    isUp = config.isUp,
             position = config.position,
             edge = this.get('grid.edge'),
 //            edges = Math.ceil(edge*12),
@@ -111,7 +125,7 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
             centerY = isUp ? 2*edge : 1.5*edge,
             url = this.get('image'),
             handler = this.get('$snap');
-
+        //console.log('enter');
         handler.attr({
             x: position[0],
             y: position[1],

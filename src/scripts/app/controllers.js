@@ -1,6 +1,7 @@
 'use strict';
 
-var content = require('./content.js');
+var content = require('./content.js'),
+    utils = require('../utils.js');
 
 
 module.exports = function(App){
@@ -9,6 +10,19 @@ module.exports = function(App){
         itemController: 'content'
     });
 
-    App.ContentController = Ember.ObjectController.extend({});
+    App.ContentController = Ember.ObjectController.extend({
+
+        isLoaded: false,
+
+        load: function(){
+            var _self = this;
+            utils
+                .promiseImg(this.get('image'))
+                .then(function(){
+                    _self.set('isLoaded', true);
+                })
+        }
+
+    });
 
 };

@@ -101,13 +101,13 @@ function getDownTrippleHexagonArray(centerX, centerY, edge, ratio){
 
 function getTrippleTileConfig(tiles, grid){
     var offsets, isUp;
-    if (tiles[0][0] === tiles[1][0]) {
+    if (tiles[0].row === tiles[1].row) {
         arrangeTiles(tiles, 0, 1, 2);
     }
-    else if (tiles[1][0] === tiles[2][0]) {
+    else if (tiles[1].row === tiles[2].row) {
         arrangeTiles(tiles, 1, 2, 0);
     }
-    else if (tiles[0][0] === tiles[2][0]) {
+    else if (tiles[0].row === tiles[2].row) {
         arrangeTiles(tiles, 0, 2, 1);
     }
     else {
@@ -116,27 +116,27 @@ function getTrippleTileConfig(tiles, grid){
     isUp = getOrientation(tiles);
     if (isUp) {
         offsets = [
-            grid.getTilePosition(tiles[0][0], tiles[0][1])[0],
-            grid.getTilePosition(tiles[2][0], tiles[2][1])[1]
+            grid.getTilePosition(tiles[0].row, tiles[0].col)[0],
+            grid.getTilePosition(tiles[2].row, tiles[2].col)[1]
         ];
     }
     else {
-        offsets = this.getTilePosition(tiles[0][0], tiles[0][1])
+        offsets = grid.getTilePosition(tiles[0].row, tiles[0].col);
     }
 
-    return new {
+    return {
         isUp: isUp,
         position: offsets
     };
 
     function arrangeTiles(tiles, long1, long2, short){
         var t1, t2, t3;
-        if (tiles[long1][1] === tiles[long2][1]+1) {
+        if (tiles[long1].col === tiles[long2].col+1) {
             t1 = tiles[long2];
             t2 = tiles[long1];
             t3 = tiles[short];
         }
-        else if (tiles[long1][1] === tiles[long2][1]-1) {
+        else if (tiles[long1].col === tiles[long2].col-1) {
             t1 = tiles[long1];
             t2 = tiles[long2];
             t3 = tiles[short];
@@ -150,10 +150,10 @@ function getTrippleTileConfig(tiles, grid){
     }
 
     function getOrientation(tiles){
-        var longRow = tiles[0][0],
-            shortRow = tiles[2][0],
-            shortCol = tiles[2][1],
-            longCol = tiles[0][1];
+        var longRow = tiles[0].row,
+            shortRow = tiles[2].row,
+            shortCol = tiles[2].col,
+            longCol = tiles[0].col;
 
         var orientation;
 
