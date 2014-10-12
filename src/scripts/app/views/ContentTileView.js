@@ -50,15 +50,42 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
     }.observes('controller.isLoaded'),
 
     initSingle: function(){
-        var url = this.get('image'),
+        var innerRatio = 0.9,
             handler = this.get('$snap'),
-            $img = handler.image(url, 0, 0, 350, 350),
-            $frame = handler.polygon(outlines.getHexagonArray(this.centerX, this.centerY, this.edge*0.8));
+            grid = this.get('grid'),
+            tileRC = this.get('tiles')[0],
+            tilePos = grid.getTilePosition(tileRC.row, tileRC.col),
+            tile = grid.getTile(tileRC.row, tileRC.col),
+            edge = tile.get('edge'),
+            edges = tile.get('edges'),
+            centerX = tile.get('centerX'),
+            centerY = tile.get('centerY');
 
-        $img.attr({
-            'clip-path': this.$frame,
+        handler.attr({
+            x: tilePos[0],
+            y: tilePos[1],
             opacity: 0
         });
+
+        var $inner = handler.polygon(outlines.getHexagonArray(centerX, centerY, edge*innerRatio));
+        $inner.attr({
+            fill: 'none',
+            stroke: 'red',
+            'stroke-width': 5,
+            'stroke-dashoffset': edges,
+            'stroke-dasharray': edges,
+            'stroke-linecap': 'square'
+        });
+
+        var url = this.get('image'),
+            $img = handler.image(url, 0, 0, 350, 350),
+            $frame = handler.polygon(outlines.getHexagonArray(centerX, centerY, edge*0.8));
+
+        $img.attr({
+            'clip-path': $frame,
+            opacity: 0
+        });
+
         $frame.attr({
             fill: 'tomato'
         });
