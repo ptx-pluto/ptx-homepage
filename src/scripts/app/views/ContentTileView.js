@@ -57,7 +57,6 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
                 });
             })
             .then(function(){
-                console.log('called');
                 return _self.promiseAppear();
             });
 
@@ -93,12 +92,11 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
         });
 
         var url = this.get('image'),
-            $img = handler.image(url, 0, 0, 350, 350),
+            $img = handler.image(url, 0, 0, 173, 173),
             $frame = handler.polygon(outlines.getHexagonArray(centerX, centerY, edge*0.8));
 
         $img.attr({
-            'clip-path': $frame,
-            opacity: 0
+            'clip-path': $frame
         });
 
         $frame.attr({
@@ -111,21 +109,17 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
 
         var tiles = this.get('tiles'),
             grid = this.get('grid'),
-            config = outlines.getTrippleTileConfig(tiles, grid);
-
-        console.log(config);
-
-        var    isUp = config.isUp,
+            config = outlines.getTrippleTileConfig(tiles, grid),
+            isUp = config.isUp,
             position = config.position,
             edge = this.get('grid.edge'),
-//            edges = Math.ceil(edge*12),
             frameRatio = 0.8,
             innerRatio = 0.9,
             centerX = 2*edge * Math.cos(Math.PI/6),
             centerY = isUp ? 2*edge : 1.5*edge,
             url = this.get('image'),
             handler = this.get('$snap');
-        //console.log('enter');
+
         handler.attr({
             x: position[0],
             y: position[1],
@@ -152,14 +146,12 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
 
     },
 
-
 //    promiseOutline: function(){
 //        return this.promiseAnimate(this.$inner, { 'stroke-dashoffset': 0 }, 1000);
 //    },
 
-
     promiseAppear: function(){
-        return this.promiseAnimate(this.get('$snap'), { opacity: 1 }, 500);
+        return this.promiseAnimate(this.get('$snap'), { opacity: 1 }, 1000);
     }
 
 });
