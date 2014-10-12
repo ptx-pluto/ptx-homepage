@@ -8,6 +8,10 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
 
     tagName: 'svg',
 
+    classNames: [
+        'hexagon-grid__content-tile'
+    ],
+
     container: Ember.computed.alias('parentView.parentView'),
 
     grid: Ember.computed.alias('container.grid'),

@@ -1,7 +1,7 @@
 'use strict';
 
-var HexagonGridView = require('./HexagonGridView.js');
-//var ContentTileView = require('./ContentTileView.js');
+var HexagonGridView = require('./HexagonGridView.js'),
+    ContentTileView = require('./ContentTileView.js');
 
 module.exports = Ember.ContainerView.extend({
 
@@ -9,17 +9,17 @@ module.exports = Ember.ContainerView.extend({
 
     childViews: ['grid'],
 
-    grid: HexagonGridView.create()
+    grid: HexagonGridView.create(),
 
-/*
     didInsertElement: function(){
         var contents = Ember.CollectionView.extend({
-            itemViewClass: ContentTileView
+            itemViewClass: ContentTileView,
+            tagName: 'svg'
         }).create({
-            content: this.get('controllers')
+            content: this.get('controller')
         });
         this.set('contents', contents);
+        this.pushObject(contents);
     }
-*/
 
 });
