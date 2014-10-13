@@ -4,7 +4,7 @@ var ContentTileView = require('./ContentTileView.js');
 
 module.exports = Ember.CollectionView.extend({
 
-    tagName: 'svg',
+    tagName: 'div',
 
     classNames: ['hexagon-grid__content-tiles'],
 
@@ -12,8 +12,9 @@ module.exports = Ember.CollectionView.extend({
 
     index: Ember.computed.alias('parentView'),
 
-    grid: Ember.computed.alias('index.grid'),
+    grid: Ember.computed.alias('index.grid')
 
+    /*
     didInsertElement: function(){
         var handler = Snap(this.get('element'));
         handler.attr({
@@ -21,5 +22,6 @@ module.exports = Ember.CollectionView.extend({
             height: this.get('grid.totalHeight')
         });
     }
+    */
 
 });

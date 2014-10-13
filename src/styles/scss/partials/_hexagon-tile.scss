@@ -13,6 +13,10 @@
   z-index: 100;
 }
 
+.hexagon-grid__content-tile {
+  position: absolute;
+}
+
 .hexagon-grid__tile {
 
   &:hover {

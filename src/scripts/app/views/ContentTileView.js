@@ -75,13 +75,18 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
             tilePos = grid.getTilePosition(tileRC.row, tileRC.col),
             tile = grid.getTile(tileRC.row, tileRC.col),
             edge = tile.get('edge'),
+            tileWidth = this.get('grid.tileWidth'),
             edges = tile.get('edges'),
             centerX = tile.get('centerX'),
             centerY = tile.get('centerY');
 
+        Ember.$(this.get('element'))
+            .css('left', tilePos[0])
+            .css('top', tilePos[1]);
+
         handler.attr({
-            x: tilePos[0],
-            y: tilePos[1],
+            width: tileWidth,
+            height: edge*2,
             opacity: 0
         });
 
@@ -117,6 +122,7 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
             isUp = config.isUp,
             position = config.position,
             edge = this.get('grid.edge'),
+            tileWidth = this.get('grid.tileWidth'),
             frameRatio = 0.8,
             innerRatio = 0.9,
             centerX = 2*edge * Math.cos(Math.PI/6),
@@ -124,9 +130,13 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
             url = this.get('image'),
             handler = this.get('$snap');
 
+        Ember.$(this.get('element'))
+            .css('left', position[0])
+            .css('top', position[1]);
+
         handler.attr({
-            x: position[0],
-            y: position[1],
+            width: tileWidth*2,
+            height: edge*3.5,
             opacity: 0
         });
 
