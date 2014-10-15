@@ -22,6 +22,41 @@ module.exports = [
             { row: 4, col: 3 }
         ]
     },
+/*
+    {
+        name: 'Github',
+        caption: 'My Github account',
+        tileType: TILE_TYPES.SINGLE,
+        contentType: CONTENT_TYPES.THUMBNAIL,
+        image: '/src/images/profile.jpg',
+        tiles: [
+            { row: 4, col: 4 }
+        ]
+    },
+*/
+
+    {
+        name: 'Twitter',
+        caption: 'My twitter account',
+        tileType: TILE_TYPES.SINGLE,
+        contentType: CONTENT_TYPES.THUMBNAIL,
+        image: '/src/images/profile.jpg',
+        tiles: [
+            { row: 2, col: 3 }
+        ]
+    },
+
+
+    {
+        name: 'Weibo',
+        caption: 'My Weibo account',
+        tileType: TILE_TYPES.SINGLE,
+        contentType: CONTENT_TYPES.THUMBNAIL,
+        image: '/src/images/profile.jpg',
+        tiles: [
+            { row: 3, col: 3 }
+        ]
+    },
 
     {
         name: 'tripple',
