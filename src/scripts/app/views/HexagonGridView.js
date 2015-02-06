@@ -10,9 +10,9 @@ module.exports = Ember.CollectionView.extend({
 
     tagName: 'svg',
 
-    rows: 7,
+    rows: 10,
 
-    cols: 9,
+    cols: 15,
 
     edge: 100,
 
@@ -51,15 +51,20 @@ module.exports = Ember.CollectionView.extend({
         ];
     },
 
-    didInsertElement: function(){
+    onInit: function(){
         var tileWidth = this.get('tileWidth'),
-            totalHeight = this.get('totalHeight'),
-            totalWidth = this.get('totalWidth'),
             edge = this.get('edge');
         this.rowDelta = 1.5 * edge;
         this.lineDelta = tileWidth/2;
         this.paddingTop = edge;
         this.paddingLeft = 20 + tileWidth/2;
+    }.on('init'),
+
+
+    domInit: function(){
+
+        var totalHeight = this.get('totalHeight'),
+            totalWidth = this.get('totalWidth');
 
         var handler = Snap(this.get('element'));
         this.set('$snap', handler);
@@ -69,7 +74,8 @@ module.exports = Ember.CollectionView.extend({
             width: totalWidth
         });
         this.showGrid();
-    },
+
+    }.on('didInsertElement'),
 
     showGrid: function(){
         var rows = this.get('rows'),

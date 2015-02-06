@@ -1,11 +1,6 @@
 'use strict';
 
-module.exports.getTripleHexagonArray = getTripleHexagonArray;
-module.exports.getHexagonArray = getHexagonArray;
-module.exports.getTrippleTileConfig = getTrippleTileConfig;
-
-
-function getHexagonArray(centerX, centerY, edge){
+module.exports.getHexagonArray = function(centerX, centerY, edge){
     var dist = edge * Math.cos(Math.PI/6);
     return [
         centerX, centerY-edge,
@@ -27,17 +22,17 @@ function getHexagonArray(centerX, centerY, edge){
      centerX, centerY-edge
      ];
      */
-}
+};
 
 
-function getTripleHexagonArray(isUp, centerX, centerY, edge, ratio){
+module.exports.getTripleHexagonArray = function(isUp, centerX, centerY, edge, ratio){
     if (isUp) {
         return getUpTrippleHexagonArray(centerX, centerY, edge, ratio);
     }
     else {
         return getDownTrippleHexagonArray(centerX, centerY, edge, ratio);
     }
-}
+};
 
 function getUpTrippleHexagonArray(centerX, centerY, edge, ratio){
     var dist = edge * Math.cos(Math.PI/6),
@@ -99,7 +94,14 @@ function getDownTrippleHexagonArray(centerX, centerY, edge, ratio){
 
 }
 
-function getTrippleTileConfig(tiles, grid){
+
+/**
+ *
+ * @param tiles
+ * @param grid
+ * @returns {{isUp: Boolean, position}}
+ */
+module.exports.getTrippleTileConfig = function(tiles, grid){
     var offsets, isUp;
     if (tiles[0].row === tiles[1].row) {
         arrangeTiles(tiles, 0, 1, 2);
@@ -178,4 +180,4 @@ function getTrippleTileConfig(tiles, grid){
         }
     }
 
-}
+};
