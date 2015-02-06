@@ -10,6 +10,6 @@ module.exports = function(App){
     App.HexagonGridView = HexagonGridView;
     App.HexagonRowView = HexagonRowView;
     App.HexagonTileView = HexagonTileView;
-    App.IndexView = IndexView;
+//    App.IndexView = IndexView;
 
 };

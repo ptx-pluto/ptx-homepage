@@ -1,20 +1,32 @@
 'use strict';
 
+var _ = require('underscore');
+
 module.exports = Ember.Component.extend({
 
     tagName: 'svg',
+
+    attributeBindings: ['width', 'height'],
 
     rows: 7,
 
     cols: 9,
 
+    rowsArray: function(){
+        return _.range(this.get('rows'));
+    }.property('rows'),
+
+    colsArray: function(){
+        return _.range(this.get('cols'));
+    }.property('cols'),
+
     edge: 100,
 
-    totalHeight: function(){
+    height: function(){
         return  this.get('edge') * 1.5 * (this.get('rows') - 1);
     }.property('rows', 'edge'),
 
-    totalWidth: function(){
+    width: function(){
         return this.get('tileWidth') * (this.get('cols') + 1);
     }.property('cols', 'edge'),
 
@@ -31,24 +43,13 @@ module.exports = Ember.Component.extend({
         ];
     },
 
-    didInsertElement: function(){
+    cacheData: function(){
         var tileWidth = this.get('tileWidth'),
-            totalHeight = this.get('totalHeight'),
-            totalWidth = this.get('totalWidth'),
             edge = this.get('edge');
         this.rowDelta = 1.5 * edge;
         this.lineDelta = tileWidth/2;
         this.paddingTop = edge;
         this.paddingLeft = 20 + tileWidth/2;
-
-        var handler = Snap(this.get('element'));
-        this.set('$snap', handler);
-
-        handler.attr({
-            height: totalHeight,
-            width: totalWidth
-        });
-        this.showGrid();
-    }
+    }.on('init')
 
 });

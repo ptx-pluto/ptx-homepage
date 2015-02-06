@@ -38,7 +38,7 @@ module.exports = Ember.Component.extend({
             col = this.get('col'),
             grid = this.get('grid');
 
-        if (!row || !col || !grid) throw "Require row, col and grid to initialize the tile";
+        //if (!row || !col || !grid) throw "Require row, col and grid to initialize the tile";
 
         var edge = this.get('edge'),
             center = this.get('center'),
@@ -47,7 +47,20 @@ module.exports = Ember.Component.extend({
 
         var outline = outlines.getHexagonArray(centerX, centerY, edge*RATIO);
 
-        return outline.map(function(pair){ return pair.join(','); }).join(' ');
+        return outline.reduce(function(memo, val, index){
+            if (index === 0) {
+
+            }
+            else if (index % 2 === 0) {
+                memo += ' ';
+            }
+            else {
+                memo += ',';
+            }
+
+            return memo + val;
+
+        }, '');
 
     }.property('row', 'col')
 

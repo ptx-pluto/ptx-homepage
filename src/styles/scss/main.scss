@@ -13,3 +13,13 @@ img {
   margin: 0;
   border: 0;
 }
+
+polygon {
+  fill: #FF0526;
+//  fill: none;
+  stroke: red;
+  stroke-width: 5;
+//  stroke-dashoffset: edges;
+//  stroke-dasharray: edges;
+  stroke-linecap: square;
+}
