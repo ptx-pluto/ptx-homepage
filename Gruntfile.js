@@ -86,8 +86,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'browserify:build',
         'emberTemplates:build',
-        'compass:build',
-        'copy:build'
+        'compass:build'
     ]);
 
     grunt.registerTask('dist', ['build', 'uglify:dist']);

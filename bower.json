@@ -4,12 +4,9 @@
     "proxy":"http://localhost:8118",
     "https-proxy":"http://localhost:8118",
     "dependencies": {
-        "ember": "latest",
+        "ember": "1.9.1",
         "jquery": "latest",
-        "prototype.js": "latest",
-        "underscore": "latest",
-        "snap.svg": "latest",
-        "rsvp": "latest"
+        "snap.svg": "latest"
     },
     "devDependencies": {}
 }
