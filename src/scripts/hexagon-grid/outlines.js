@@ -1,5 +1,12 @@
 'use strict';
 
+/**
+ *
+ * @param {number} centerX
+ * @param {number} centerY
+ * @param {number} edge
+ * @returns number[]
+ */
 module.exports.getHexagonArray = function(centerX, centerY, edge){
     var dist = edge * Math.cos(Math.PI/6);
     return [
@@ -22,6 +29,33 @@ module.exports.getHexagonArray = function(centerX, centerY, edge){
      centerX, centerY-edge
      ];
      */
+};
+
+/**
+ *
+ * @param {number} centerX
+ * @param {number} centerY
+ * @param {number} edge
+ * @returns string
+ */
+module.exports.getHexagonPoints = function(centerX, centerY, edge){
+
+    return exports.getHexagonArray(centerX,centerY, edge)
+        .reduce(function(memo, val, index){
+            if (index === 0) {
+
+            }
+            else if (index % 2 === 0) {
+                memo += ' ';
+            }
+            else {
+                memo += ',';
+            }
+
+            return memo + val;
+
+        }, '');
+
 };
 
 

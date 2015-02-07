@@ -22,6 +22,7 @@ module.exports = Ember.Component.extend({
 
     edge: Ember.computed.alias('grid.edge'),
 
+
     center: function(){
 
         var row = this.get('row'),
@@ -36,74 +37,32 @@ module.exports = Ember.Component.extend({
 
     }.property('row', 'col', 'edge'),
 
+
     points: function() {
 
-        var RATIO = 0.95;
-
-        var row = this.get('row'),
-            col = this.get('col'),
-            grid = this.get('grid');
-
-        //if (!row || !col || !grid) throw "Require row, col and grid to initialize the tile";
-
-        var edge = this.get('edge'),
+        var RATIO = 0.95,
+            edge = this.get('edge'),
             center = this.get('center'),
             centerX = center[0],
             centerY = center[1];
 
-        var outline = outlines.getHexagonArray(centerX, centerY, edge*RATIO);
-
-        return outline.reduce(function(memo, val, index){
-            if (index === 0) {
-
-            }
-            else if (index % 2 === 0) {
-                memo += ' ';
-            }
-            else {
-                memo += ',';
-            }
-
-            return memo + val;
-
-        }, '');
+        return outlines.getHexagonPoints(centerX, centerY, edge*RATIO);
 
     }.property('row', 'col'),
 
 
     innerOutline: function() {
 
-        var RATIO = 0.85;
-
-        var row = this.get('row'),
-            col = this.get('col'),
-            grid = this.get('grid');
-
-        //if (!row || !col || !grid) throw "Require row, col and grid to initialize the tile";
-
-        var edge = this.get('edge'),
+        var RATIO = 0.85,
+            edge = this.get('edge'),
             center = this.get('center'),
             centerX = center[0],
             centerY = center[1];
 
-        var outline = outlines.getHexagonArray(centerX, centerY, edge*RATIO);
-
-        return outline.reduce(function(memo, val, index){
-            if (index === 0) {
-
-            }
-            else if (index % 2 === 0) {
-                memo += ' ';
-            }
-            else {
-                memo += ',';
-            }
-
-            return memo + val;
-
-        }, '');
+        return outlines.getHexagonPoints(centerX, centerY, edge*RATIO);
 
     }.property('row', 'col'),
+
 
     appear: function(){
 
