@@ -20,7 +20,7 @@ module.exports = Ember.Component.extend({
         return _.range(this.get('cols'));
     }.property('cols'),
 
-    edge: 100,
+    edge: 150,
 
     height: function(){
         return  this.get('edge') * 1.5 * (this.get('rows') - 1);

@@ -14,7 +14,7 @@ module.exports = Ember.CollectionView.extend({
 
     cols: 15,
 
-    edge: 100,
+    edge: 150,
 
     totalHeight: function(){
         return  this.get('edge') * 1.5 * (this.get('rows') - 1);

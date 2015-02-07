@@ -1,10 +1,16 @@
 'use strict';
 
-var outlines = require('../../hexagon-grid/outlines.js');
+var _ = require('underscore');
+
+var outlines = require('../../hexagon-grid/outlines.js'),
+    settings = require('../settings'),
+    TILE_OUTLINE_DURATION = settings.TILE_OUTLINE_DURATION;
 
 module.exports = Ember.Component.extend({
 
     tagName: 'polygon',
+
+    classNames: ['component__hexagon-tile'],
 
     attributeBindings: ['points'],
 
@@ -62,6 +68,27 @@ module.exports = Ember.Component.extend({
 
         }, '');
 
-    }.property('row', 'col')
+    }.property('row', 'col'),
+
+    appear: function(){
+
+        var handler = Snap(this.get('element')),
+            row = this.get('row'),
+            col = this.get('col'),
+            edges = this.get('edge')*6;
+
+        handler.attr({
+            'stroke-dashoffset': edges,
+            'stroke-dasharray': edges
+        });
+
+        _.delay(function(){
+            handler.animate({ 'stroke-dashoffset': 0 }, TILE_OUTLINE_DURATION, null, function(){
+                handler.animate({ fill: '#FF0526' }, 500, null, function(){});
+            });
+        }, TILE_OUTLINE_DURATION/3*(row+col)+1);
+
+    }.on('didInsertElement')
+
 
 });

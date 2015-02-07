@@ -1,3 +1,4 @@
+@import "components/hexagon-tile";
 @import "partials/hexagon-tile";
 
 html, body {
@@ -12,14 +13,4 @@ img {
   padding: 0;
   margin: 0;
   border: 0;
-}
-
-polygon {
-  fill: #FF0526;
-//  fill: none;
-  stroke: red;
-  stroke-width: 5;
-//  stroke-dashoffset: edges;
-//  stroke-dasharray: edges;
-  stroke-linecap: square;
 }
