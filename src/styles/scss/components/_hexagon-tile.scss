@@ -1,15 +1,16 @@
 .component__hexagon-tile {
 
-//  fill: #FF0526;
-//  fill: none;
   stroke: red;
   stroke-width: 5;
   stroke-linecap: square;
 
+}
+
+
+.component__hexagon-tile__inner {
 
   &:hover {
-      transition: fill 0.5s;
-      fill: black;
+    fill: black;
   }
 
 }
