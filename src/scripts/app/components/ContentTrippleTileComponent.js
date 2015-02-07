@@ -32,7 +32,7 @@ module.exports = Ember.Component.extend({
             isUp = config.isUp,
             position = config.position,
             centerX = position[0] + 2*edge * Math.cos(Math.PI/6),
-            centerY = position[1] + isUp ? 2*edge : 1.5*edge;
+            centerY = position[1] + (isUp ? 2*edge : 1.5*edge);
 
         return [ centerX, centerY ];
 
