@@ -56,15 +56,18 @@ module.exports = Ember.Component.extend({
         return this.getOutline(RATIO);
     }.property('center', 'content'),
 
+
     hideOnInit: function(){
-        //Snap(this.get('element')).attr({ opacity: 0 });
+        Snap(this.get('element')).attr({ opacity: 0 });
     }.on('didInsertElement'),
 
+
     getReady: function(){
-        var tiles = this.get('content.tiles'),
-            grid = this.get('grid'),
-            g = this.get('element'),
-            $g = Snap(g);
+
+        var _self = this,
+            tiles = this.get('content.tiles'),
+            grid = this.get('grid');
+
         grid.promiseTilesReady(tiles)
             .then(function(ts){
                 return Promise.all(ts.map(function(ti){
@@ -72,9 +75,11 @@ module.exports = Ember.Component.extend({
                 }))
             })
             .then(function(){
-                console.log('called');
-                return utils.promiseSanpAnimate($g, { opacity: 1 }, 500, null);
+                return utils.promiseSanpAnimate(Snap(_self.get('element')), { opacity: 1 }, 500, null);
+            }).then(function(){
+                console.log('animated');
             });
+
     }.on('init')
 
 });
