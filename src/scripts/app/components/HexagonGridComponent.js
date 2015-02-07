@@ -34,6 +34,9 @@ module.exports = Ember.Component.extend({
         return  2 * this.get('edge') * Math.cos(Math.PI/6);
     }.property('edge'),
 
+    contentQueue: [],
+
+
     getTilePosition: function(row, col){
         var tileWidth = this.get('tileWidth');
         var xbase = col * tileWidth - this.paddingLeft;
@@ -43,6 +46,19 @@ module.exports = Ember.Component.extend({
         ];
     },
 
+
+    promiseTilesReady: function(tiles){
+        var contentQueue = this.get('contentQueue');
+        return new Promise(function(resolve, reject){
+            contentQueue.push({
+                resolve: resolve,
+                tiles: [],
+                queue: tiles
+            });
+        });
+    },
+
+
     cacheData: function(){
         var tileWidth = this.get('tileWidth'),
             edge = this.get('edge');
@@ -50,6 +66,27 @@ module.exports = Ember.Component.extend({
         this.lineDelta = tileWidth/2;
         this.paddingTop = edge;
         this.paddingLeft = 20 + tileWidth/2;
-    }.on('init')
+    }.on('init'),
+
+
+    actions: {
+
+        tileReady: function(row, col, tile){
+            var queue = this.get('contentQueue');
+            queue.forEach(function(entry){
+                entry.queue.forEach(function(t){
+                    if (t.row === row && t.col === col) {
+                        entry.queue.removeObject(t);
+                        entry.tiles.push(tile);
+                    }
+                });
+                if (entry.queue.length === 0) {
+                    queue.removeObject(entry);
+                    entry.resolve(entry.tiles);
+                }
+            });
+        }
+
+    }
 
 });

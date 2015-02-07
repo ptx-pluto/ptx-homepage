@@ -66,7 +66,9 @@ module.exports = Ember.Component.extend({
 
     appear: function(){
 
-        var g = jQuery(this.get('element')),
+        var _self = this,
+            grid = this.get('grid'),
+            g = jQuery(this.get('element')),
             $outter = Snap(jQuery('.component__hexagon-tile__outter', g)[0]),
             $inner = Snap(jQuery('.component__hexagon-tile__inner', g)[0]),
             row = this.get('row'),
@@ -80,7 +82,9 @@ module.exports = Ember.Component.extend({
 
         _.delay(function(){
             $outter.animate({ 'stroke-dashoffset': 0 }, TILE_OUTLINE_DURATION, null, function(){
-                $inner.animate({ fill: '#FF0526' }, 500, null, function(){});
+                $inner.animate({ fill: '#FF0526' }, 500, null, function(){
+                    grid.send('tileReady', row, col, _self);
+                });
             });
         }, TILE_OUTLINE_DURATION/3*(row+col)+1);
 

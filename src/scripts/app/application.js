@@ -12,6 +12,7 @@ var App = window.App = Ember.Application.create({
 
 App.HexagonGridComponent = require('./components/HexagonGridComponent.js');
 App.HexagonTileComponent = require('./components/HexagonTileComponent.js');
+App.ContentTileComponent = require('./components/ContentTileComponent.js');
 
 setupRoutes(App);
 setupControllers(App);
