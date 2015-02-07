@@ -1,0 +1,20 @@
+.component__content-tile {
+
+}
+
+.component__content-tile__outer {
+
+  stroke: red;
+  stroke-width: 5;
+  stroke-linecap: square;
+
+}
+
+
+.component__content-tile__inner {
+
+  &:hover {
+    fill: black;
+  }
+
+}

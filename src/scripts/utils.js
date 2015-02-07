@@ -9,6 +9,15 @@ module.exports.promiseImg = promiseImg;
 module.exports.promiseDelay = promiseDelay;
 
 
+module.exports.promiseSanpAnimate = function($element, ps, duration, ease){
+    return new Promise(function(resolve, reject){
+        $element.animate(ps, duration, ease, function(){
+            resolve();
+        })
+    });
+};
+
+
 /**
  * @param {number} iteration
  * @return {number[]} -- rgba

@@ -68,6 +68,16 @@ module.exports.getTripleHexagonArray = function(isUp, centerX, centerY, edge, ra
     }
 };
 
+module.exports.getTripplePoints = function(isUp, centerX, centerY, edge, ratio){
+    return exports.getTripleHexagonArray(isUp, centerX, centerY, edge, ratio)
+        .reduce(function(memo, val, index){
+            if (index === 0) {}
+            else if (index % 2 === 0) memo += ' ';
+            else memo += ',';
+            return memo + val;
+        }, '');
+};
+
 function getUpTrippleHexagonArray(centerX, centerY, edge, ratio){
     var dist = edge * Math.cos(Math.PI/6),
         e = edge * ratio,

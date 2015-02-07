@@ -7,3 +7,13 @@
     {{/each}}
 
 {{/each}}
+
+{{#each entry in content}}
+
+    {{#if entry.isSingle}}
+        {{content-tile content=entry grid=this}}
+    {{else}}
+        {{content-tripple-tile content=entry grid=this}}
+    {{/if}}
+
+{{/each}}

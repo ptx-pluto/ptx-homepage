@@ -6,13 +6,14 @@ module.exports = function(App){
 
     App.ApplicationRoute = Ember.Route.extend({
 
+        model: function(){
+            return content;
+        }
+
     });
 
     App.IndexRoute = Ember.Route.extend({
 
-        model: function(){
-            return content;
-        }
 
     });
 

@@ -160,10 +160,6 @@ module.exports = Ember.View.extend(SnapSvgMixin, {
 
     },
 
-//    promiseOutline: function(){
-//        return this.promiseAnimate(this.$inner, { 'stroke-dashoffset': 0 }, 1000);
-//    },
-
     promiseAppear: function(){
         return this.promiseAnimate(this.get('$snap'), { opacity: 1 }, 1000);
     }
