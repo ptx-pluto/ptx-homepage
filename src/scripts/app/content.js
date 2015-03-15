@@ -15,7 +15,6 @@ module.exports = [
     {
         name: 'single',
         caption: 'this is a single tile',
-        isSingle: true,
         tileType: TILE_TYPES.SINGLE,
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/profile.jpg',
@@ -39,7 +38,6 @@ module.exports = [
     {
         name: 'Twitter',
         caption: 'My twitter account',
-        isSingle: true,
         tileType: TILE_TYPES.SINGLE,
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/profile.jpg',
@@ -52,7 +50,6 @@ module.exports = [
     {
         name: 'Weibo',
         caption: 'My Weibo account',
-        isSingle: true,
         tileType: TILE_TYPES.SINGLE,
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/profile.jpg',
@@ -64,7 +61,6 @@ module.exports = [
     {
         name: 'tripple',
         caption: 'this is a tripple tile',
-        isTripple: true,
         tileType: TILE_TYPES.TRIPPLE,
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/profile.jpg',
@@ -79,7 +75,6 @@ module.exports = [
         name: 'profile',
         caption: 'this is a tripple tile',
         tileType: TILE_TYPES.TRIPPLE,
-        isTripple: true,
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/nabla.jpg',
         tiles: [

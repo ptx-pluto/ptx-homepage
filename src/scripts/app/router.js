@@ -1,13 +1,16 @@
 'use strict';
 
-var content = require('./content.js');
+var content = require('./content.js'),
+    ContentTile = require('./models/ContentTile.js');
 
 module.exports = function(App){
 
     App.ApplicationRoute = Ember.Route.extend({
 
         model: function(){
-            return content;
+            return content.map(function(tile){
+                return ContentTile.create(tile);
+            });
         }
 
     });
