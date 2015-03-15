@@ -17,7 +17,7 @@ module.exports = [
         caption: 'this is a single tile',
         tileType: TILE_TYPES.SINGLE,
         contentType: CONTENT_TYPES.THUMBNAIL,
-        image: '/src/images/profile.jpg',
+        image: '/src/images/weibo.png',
         tiles: [
             { row: 4, col: 3 }
         ]
@@ -40,7 +40,7 @@ module.exports = [
         caption: 'My twitter account',
         tileType: TILE_TYPES.SINGLE,
         contentType: CONTENT_TYPES.THUMBNAIL,
-        image: '/src/images/profile.jpg',
+        image: '/src/images/twitter.png',
         tiles: [
             { row: 2, col: 3 }
         ]
@@ -48,11 +48,11 @@ module.exports = [
 
 
     {
-        name: 'Weibo',
-        caption: 'My Weibo account',
+        name: 'Github',
+        caption: 'My Github account',
         tileType: TILE_TYPES.SINGLE,
         contentType: CONTENT_TYPES.THUMBNAIL,
-        image: '/src/images/profile.jpg',
+        image: '/src/images/github.png',
         tiles: [
             { row: 3, col: 3 }
         ]
@@ -76,7 +76,7 @@ module.exports = [
         caption: 'this is a tripple tile',
         tileType: TILE_TYPES.TRIPPLE,
         contentType: CONTENT_TYPES.THUMBNAIL,
-        image: '/src/images/nabla.jpg',
+        image: '/src/images/nabla.png',
         tiles: [
             { row: 2, col: 4 },
             { row: 2, col: 5 },

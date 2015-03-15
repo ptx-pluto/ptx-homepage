@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('underscore');
+
 var outlines = require('../../hexagon-grid/outlines.js'),
     utils = require('../../utils.js');
 
@@ -17,11 +19,40 @@ module.exports = Ember.Component.extend({
 
     image: Ember.computed.alias('content.image'),
 
+    edge: Ember.computed.alias('grid.edge'),
+
+    width: function(){
+        return this.get('edge')*2*Math.sqrt(3);
+    }.property('edge'),
+
+    height: function(){
+        return this.get('edge')*3.5;
+    }.property('edge'),
+
+    uuid: function(){
+        return _.uniqueId('content-tile-');
+    }.property(),
+
+    clip1: function(){
+        return 'url(#' + this.get('clip1id') + ')';
+    }.property('clip1id'),
+
+    clip1id: function(){
+        return this.get('uuid') + '__clip1';
+    }.property('uuid'),
+
     config: function(){
         var grid = this.get('grid'),
             tiles = this.get('tiles');
         return outlines.getTrippleTileConfig(tiles, grid);
     }.property('content'),
+
+    isUp: Ember.computed.alias('config.isUp'),
+
+    corner: function(){
+        var pos = this.get('config.position');
+        return { x: pos[0], y: pos[1] };
+    }.property('config.position'),
 
     center: function(){
 
@@ -29,7 +60,7 @@ module.exports = Ember.Component.extend({
             tiles = this.get('tiles'),
             edge = this.get('grid.edge'),
             config = this.get('config'),
-            isUp = config.isUp,
+            isUp = this.get('isUp'),
             position = config.position,
             centerX = position[0] + 2*edge * Math.cos(Math.PI/6),
             centerY = position[1] + (isUp ? 2*edge : 1.5*edge);

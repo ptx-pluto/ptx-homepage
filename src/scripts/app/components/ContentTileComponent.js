@@ -41,10 +41,6 @@ module.exports = Ember.Component.extend({
         return this.get('uuid') + '__clip1';
     }.property('uuid'),
 
-    imageSize: function(){
-        return this.get('edge')*2;
-    }.property('edge'),
-
     center: function(){
 
         var grid = this.get('grid'),
