@@ -14,7 +14,7 @@
 
         {{#if entry.isSingleTile}}
             {{content-tile content=entry grid=this}}
-        {{else}}
+        {{else if entry.isTrippleTile}}
             {{content-tripple-tile content=entry grid=this}}
         {{/if}}
 
