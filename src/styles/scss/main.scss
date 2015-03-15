@@ -1,13 +1,13 @@
+@import "reset";
+@import "components/hexagon-grid";
 @import "components/hexagon-tile";
 @import "components/content-tile";
-@import "partials/hexagon-tile";
 
 html, body {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  overflow-x: hidden;
   background-color: black;
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
 
 img {

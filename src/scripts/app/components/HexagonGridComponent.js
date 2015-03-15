@@ -4,9 +4,9 @@ var _ = require('underscore');
 
 module.exports = Ember.Component.extend({
 
-    tagName: 'svg',
+    tagName: 'div',
 
-    attributeBindings: ['width', 'height'],
+    classNames: ['hexagon-grid__container'],
 
     rows: 7,
 
@@ -27,7 +27,7 @@ module.exports = Ember.Component.extend({
     }.property('rows', 'edge'),
 
     width: function(){
-        return this.get('tileWidth') * (this.get('cols') + 1);
+        return this.get('tileWidth') * (this.get('cols') - 1);
     }.property('cols', 'edge'),
 
     tileWidth: function(){
@@ -68,6 +68,20 @@ module.exports = Ember.Component.extend({
         this.paddingLeft = 20 + tileWidth/2;
     }.on('init'),
 
+
+    registerWheel: function(){
+        var _self = this;
+        jQuery(this.get('element')).on('wheel', function(e){
+            _self.wheel(e.originalEvent);
+        });
+    }.on('didInsertElement'),
+
+    wheel: function(e){
+        var container = this.get('element'),
+            speed = 1;
+        container.scrollTop += e.deltaY*speed;
+        container.scrollLeft += e.deltaX*speed;
+    },
 
     actions: {
 

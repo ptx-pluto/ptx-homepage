@@ -1,19 +1,23 @@
-{{#each row in rowsArray}}
+<svg {{bind-attr height=height width=width}} class="hexagon-grid">
 
-    {{#each col in colsArray}}
+    {{#each row in rowsArray}}
 
-        {{hexagon-tile row=row col=col grid=this}}
+        {{#each col in colsArray}}
+
+            {{hexagon-tile row=row col=col grid=this}}
+
+        {{/each}}
 
     {{/each}}
 
-{{/each}}
+    {{#each entry in content}}
 
-{{#each entry in content}}
+        {{#if entry.isSingle}}
+            {{content-tile content=entry grid=this}}
+        {{else}}
+            {{content-tripple-tile content=entry grid=this}}
+        {{/if}}
 
-    {{#if entry.isSingle}}
-        {{content-tile content=entry grid=this}}
-    {{else}}
-        {{content-tripple-tile content=entry grid=this}}
-    {{/if}}
+    {{/each}}
 
-{{/each}}
+</svg>
