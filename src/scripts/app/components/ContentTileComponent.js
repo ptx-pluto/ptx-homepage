@@ -1,5 +1,7 @@
 'use strict';
 
+var _  = require('underscore');
+
 var outlines = require('../../hexagon-grid/outlines.js'),
     utils = require('../../utils.js');
 
@@ -13,15 +15,41 @@ module.exports = Ember.Component.extend({
 
     content: null, //required
 
+    edge: Ember.computed.alias('grid.edge'),
+
     tiles: Ember.computed.alias('content.tiles'),
 
     image: Ember.computed.alias('content.image'),
+
+    height: function(){
+        return this.get('edge')*2;
+    }.property('edge'),
+
+    width: function(){
+        return this.get('edge')*Math.sqrt(3);
+    }.property('edge'),
+
+    uuid: function(){
+        return _.uniqueId('content-tile-');
+    }.property(),
+
+    clip1: function(){
+        return 'url(#' + this.get('clip1id') + ')';
+    }.property('clip1id'),
+
+    clip1id: function(){
+        return this.get('uuid') + '__clip1';
+    }.property('uuid'),
+
+    imageSize: function(){
+        return this.get('edge')*2;
+    }.property('edge'),
 
     center: function(){
 
         var grid = this.get('grid'),
             tiles = this.get('tiles'),
-            edge = this.get('grid.edge'),
+            edge = this.get('edge'),
             tile = tiles[0],
             row = tile.row,
             col = tile.col,
@@ -34,13 +62,21 @@ module.exports = Ember.Component.extend({
 
     }.property('content'),
 
+    corner: function(){
+        var grid = this.get('grid'),
+            tiles = this.get('tiles'),
+            tile = tiles[0],
+            row = tile.row,
+            col = tile.col,
+            pos = grid.getTilePosition(row, col);
+        return { x: pos[0], y: pos[1] };
+    }.property('tiles'),
 
     getOutline: function(ratio){
         var edge = this.get('grid.edge'),
             center = this.get('center');
         return outlines.getHexagonPoints(center[0], center[1], edge*ratio);
     },
-
 
     outerPoints: function(){
         var RATIO = 0.95;
@@ -60,7 +96,7 @@ module.exports = Ember.Component.extend({
     getReady: function(){
 
         var _self = this,
-            tiles = this.get('content.tiles'),
+            tiles = this.get('tiles'),
             grid = this.get('grid');
 
         grid.promiseTilesReady(tiles)

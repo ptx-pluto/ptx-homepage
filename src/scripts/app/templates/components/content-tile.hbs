@@ -1,2 +1,7 @@
 <polygon class="component__content-tile__outer" {{bind-attr points=outerPoints}}/>
-<polygon class="component__content-tile__inner" {{bind-attr points=innerPoints}}/>
+
+<clipPath {{bind-attr id=clip1id}}>
+    <polygon {{bind-attr points=innerPoints}}/>
+</clipPath>
+
+<image {{bind-attr x=corner.x y=corner.y xlink:href=image width=width height=height clip-path=clip1}}/>
