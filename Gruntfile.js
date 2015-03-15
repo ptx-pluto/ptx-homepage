@@ -39,7 +39,10 @@ module.exports = function (grunt) {
             options: {
                 templateName: function (tName) {
                     return tName.replace('src/scripts/app/templates/', '');
-                }
+                },
+                precompile: false,
+                templateCompilerPath: 'venders/ember/ember-template-compiler.js',
+                templateNamespace: 'HTMLBars'
             },
 
             build: {
