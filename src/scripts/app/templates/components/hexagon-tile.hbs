@@ -1,2 +1,12 @@
 <polygon class="hexagon-tile__outter" {{bind-attr points=points}}/>
-<polygon class="hexagon-tile__inner" {{bind-attr points=innerOutline}}/>
+<polyline class="hexagon-tile__inner" {{bind-attr points=innerOutline}}/>
+{{!--
+<clipPath {{bind-attr id=clip1id}}>
+    <polyline {{bind-attr points=innerOutline}}/>
+</clipPath>
+
+<g class="hexagon-tile__inner" {{bind-attr clip-path=clip1}}>
+    <image xlink:href="/src/images/tile.png" {{bind-attr x=innerCorner.x y=innerCorner.y width=innerWidth height=innerHeight}}/>
+</g>
+
+--}}
