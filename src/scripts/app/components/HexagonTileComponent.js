@@ -86,7 +86,9 @@ module.exports = Ember.Component.extend({
                     grid.send('tileReady', row, col, _self);
                 });
             });
-        }, TILE_OUTLINE_DURATION/3*(row+col)+1);
+        }, TILE_OUTLINE_DURATION/3*(row+col)+800);
+
+        // wait additional 800ms, wait for full initialization, or else feel laggy
 
     }.on('didInsertElement')
 

@@ -1,10 +1,5 @@
 'use strict';
 
-var TILE_TYPES = {
-    SINGLE: 0,
-    TRIPPLE: 1
-};
-
 var CONTENT_TYPES = {
     THUMBNAIL: 0,
     EXPANDABLE: 1
@@ -13,34 +8,22 @@ var CONTENT_TYPES = {
 module.exports = [
 
     {
-        name: 'single',
-        caption: 'this is a single tile',
-        tileType: TILE_TYPES.SINGLE,
+        name: 'Weibo',
+        caption: 'My weibo profile',
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/weibo.png',
+        externalLink: 'http://weibo.com/u/2479339722',
         tiles: [
             { row: 4, col: 3 }
         ]
     },
-/*
-    {
-        name: 'Github',
-        caption: 'My Github account',
-        tileType: TILE_TYPES.SINGLE,
-        contentType: CONTENT_TYPES.THUMBNAIL,
-        image: '/src/images/profile.jpg',
-        tiles: [
-            { row: 4, col: 4 }
-        ]
-    },
-*/
 
     {
         name: 'Twitter',
-        caption: 'My twitter account',
-        tileType: TILE_TYPES.SINGLE,
+        caption: 'My twitter profile',
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/twitter.png',
+        externalLink: 'https://twitter.com/__PTX__',
         tiles: [
             { row: 2, col: 3 }
         ]
@@ -50,9 +33,9 @@ module.exports = [
     {
         name: 'Github',
         caption: 'My Github account',
-        tileType: TILE_TYPES.SINGLE,
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/github.png',
+        externalLink: 'https://github.com/ptx-pluto',
         tiles: [
             { row: 3, col: 3 }
         ]
@@ -61,7 +44,6 @@ module.exports = [
     {
         name: 'tripple',
         caption: 'this is a tripple tile',
-        tileType: TILE_TYPES.TRIPPLE,
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/profile.jpg',
         tiles: [
@@ -74,7 +56,6 @@ module.exports = [
     {
         name: 'profile',
         caption: 'this is a tripple tile',
-        tileType: TILE_TYPES.TRIPPLE,
         contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/nabla.png',
         tiles: [
@@ -86,5 +67,4 @@ module.exports = [
 
 ];
 
-module.exports.TILE_TYPES = TILE_TYPES;
 module.exports.CONTENT_TYPES = CONTENT_TYPES;

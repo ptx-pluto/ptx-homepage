@@ -5,5 +5,12 @@
 </clipPath>
 
 <g class="content-tile__inner" {{bind-attr clip-path=clip1}}>
-    <image {{bind-attr x=corner.x y=corner.y xlink:href=image width=width height=height}}/>
+    {{#if content.externalLink}}
+        <a target="_blank" {{bind-attr xlink:href=content.externalLink}}>
+            <image {{bind-attr x=corner.x y=corner.y xlink:href=image width=width height=height}}/>
+        </a>
+    {{else}}
+        <image {{bind-attr x=corner.x y=corner.y xlink:href=image width=width height=height}}/>
+    {{/if}}
+
 </g>
