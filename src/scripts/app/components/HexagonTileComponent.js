@@ -10,7 +10,7 @@ module.exports = Ember.Component.extend({
 
     tagName: 'g',
 
-    classNames: ['component__hexagon-tile'],
+    classNames: ['hexagon-tile'],
 
     attributeBindings: ['points'],
 
@@ -69,8 +69,8 @@ module.exports = Ember.Component.extend({
         var _self = this,
             grid = this.get('grid'),
             g = jQuery(this.get('element')),
-            $outter = Snap(jQuery('.component__hexagon-tile__outter', g)[0]),
-            $inner = Snap(jQuery('.component__hexagon-tile__inner', g)[0]),
+            $outter = Snap(jQuery('.hexagon-tile__outter', g)[0]),
+            $inner = Snap(jQuery('.hexagon-tile__inner', g)[0]),
             row = this.get('row'),
             col = this.get('col'),
             edges = this.get('edge')*6;

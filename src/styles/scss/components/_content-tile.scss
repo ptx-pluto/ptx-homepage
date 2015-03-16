@@ -1,8 +1,14 @@
-.component__content-tile {
+.content-tile {
+
+  cursor: pointer;
+
+  &:hover .content-tile__outer {
+    stroke: white;
+  }
 
 }
 
-.component__content-tile__outer {
+.content-tile__outer {
 
   stroke: red;
   stroke-width: 5;
@@ -11,14 +17,4 @@
 }
 
 
-.component__content-tile__inner {
-
-  //fill: #FF0526;
-
-  //fill: darkred;
-
-  &:hover {
-    fill: black;
-  }
-
-}
+.content-tile__inner {}

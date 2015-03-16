@@ -9,7 +9,7 @@ module.exports = Ember.Component.extend({
 
     tagName: 'g',
 
-    classNames: ['component__content-tile', 'is-tripple'],
+    classNames: ['content-tile', 'is-tripple'],
 
     grid: null, // required
 

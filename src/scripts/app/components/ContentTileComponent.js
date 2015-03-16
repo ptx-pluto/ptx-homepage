@@ -9,7 +9,7 @@ module.exports = Ember.Component.extend({
 
     tagName: 'g',
 
-    classNames: ['component__content-tile', 'isSingle'],
+    classNames: ['content-tile', 'isSingle'],
 
     grid: null, // required
 

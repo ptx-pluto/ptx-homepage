@@ -1,4 +1,12 @@
-.component__hexagon-tile__outter {
+.hexagon-tile {
+
+  &:hover .hexagon-tile__outter {
+    stroke: white;
+  }
+
+}
+
+.hexagon-tile__outter {
 
   stroke: red;
   stroke-width: 5;
@@ -6,11 +14,4 @@
 
 }
 
-
-.component__hexagon-tile__inner {
-
-  &:hover {
-    fill: black;
-  }
-
-}
+.hexagon-tile__inner {}
