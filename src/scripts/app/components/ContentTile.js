@@ -2,7 +2,7 @@
 
 var _  = require('underscore');
 
-var outlines = require('../../hexagon-grid/outlines.js'),
+var outlines = require('../outlines.js'),
     utils = require('../../utils.js');
 
 module.exports = Ember.Component.extend({

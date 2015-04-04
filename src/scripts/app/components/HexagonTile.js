@@ -2,7 +2,7 @@
 
 var _ = require('underscore');
 
-var outlines = require('../../hexagon-grid/outlines.js'),
+var outlines = require('../outlines.js'),
     settings = require('../settings'),
     TILE_OUTLINE_DURATION = settings.TILE_OUTLINE_DURATION;
 
