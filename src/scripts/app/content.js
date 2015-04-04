@@ -34,6 +34,16 @@ module.exports = [
     },
 
     {
+        name: 'Arch Linux',
+        caption: 'Arch Linux',
+        image: '/src/images/arch.icon.png',
+        internalLink: 'skills',
+        tiles: [
+            { row: 5, col: 2 }
+        ]
+    },
+
+    {
         name: 'JavaScript',
         caption: 'JavaScript',
         image: '/src/images/js.icon.png',
