@@ -34,6 +34,16 @@ module.exports = [
     },
 
     {
+        name: 'JavaScript',
+        caption: 'JavaScript',
+        image: '/src/images/js.icon.png',
+        internalLink: 'skills',
+        tiles: [
+            { row: 1, col: 3 }
+        ]
+    },
+
+    {
         name: 'Profile',
         caption: 'This is me, PTX.',
         image: '/src/images/profile.jpg',
@@ -46,15 +56,40 @@ module.exports = [
     },
 
     {
+        name: 'WebSFM',
+        caption: 'WebSFM is my work',
+        image: '/src/images/websfm.icon.png',
+        tiles: [
+            { row: 3, col: 2 },
+            { row: 3, col: 1 },
+            { row: 4, col: 2 }
+        ]
+    },
+
+    {
         name: 'Math',
         caption: 'I also have a Applied Mathematics degree.',
-        image: '/src/images/nabla.png',
-        internalLink: 'math',
+        image: '/src/images/math.icon.jpg',
+        internalLink: 'degrees',
         tiles: [
             { row: 2, col: 4 },
             { row: 2, col: 5 },
             { row: 3, col: 4 }
         ]
+    },
+
+    {
+        name: 'Computer Science',
+        caption: 'I am Computer Science major',
+        image: '/src/images/cs.icon.png',
+        internalLink: 'degrees',
+        tiles: [
+            { row: 4, col: 4 },
+            { row: 5, col: 3 },
+            { row: 5, col: 4 }
+        ]
     }
+
+
 
 ];

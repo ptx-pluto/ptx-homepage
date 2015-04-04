@@ -21,6 +21,13 @@ $floating-window-height: 5em;
   @include flex-direction(row);
 }
 
+.floating-window__body-container {
+  position: absolute;
+  top: $floating-window-height;
+  bottom: 0;
+  overflow: auto;
+}
+
 .floating-window__title {
   @include flex(1 0 0);
   display: flex;

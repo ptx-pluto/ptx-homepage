@@ -18,9 +18,9 @@ App.Router.map(function() {
 
     this.route('profile');
 
-    this.route('math');
+    this.route('degrees');
 
-    this.route('computer');
+    this.route('skills');
 
     this.route('websfm');
 
@@ -57,9 +57,9 @@ App.IndexRoute = Ember.Route.extend();
 
 App.ProfileRoute = Ember.Route.extend();
 
-App.MathRoute = Ember.Route.extend();
+App.DegreesRoute = Ember.Route.extend();
 
-App.ComputerRoute = Ember.Route.extend();
+App.SkillsRoute = Ember.Route.extend();
 
 App.WebsfmRoute = Ember.Route.extend();
 
