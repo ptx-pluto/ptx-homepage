@@ -2,7 +2,7 @@
     "name": "ptx-homepage",
     "version": "0.0.0",
     "dependencies": {
-        "ember": "1.10",
+        "ember": "1.11",
         "jquery": "latest",
         "snap.svg": "latest"
     },
