@@ -1,16 +1,10 @@
 'use strict';
 
-var CONTENT_TYPES = {
-    THUMBNAIL: 0,
-    EXPANDABLE: 1
-};
-
 module.exports = [
 
     {
         name: 'Weibo',
         caption: 'My weibo profile',
-        contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/weibo.png',
         externalLink: 'http://weibo.com/u/2479339722',
         tiles: [
@@ -21,7 +15,6 @@ module.exports = [
     {
         name: 'Twitter',
         caption: 'My twitter profile',
-        contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/twitter.png',
         externalLink: 'https://twitter.com/__PTX__',
         tiles: [
@@ -33,7 +26,6 @@ module.exports = [
     {
         name: 'Github',
         caption: 'My Github account',
-        contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/github.png',
         externalLink: 'https://github.com/ptx-pluto',
         tiles: [
@@ -44,7 +36,6 @@ module.exports = [
     {
         name: 'tripple',
         caption: 'this is a tripple tile',
-        contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/profile.jpg',
         tiles: [
             { row: 2, col: 1 },
@@ -56,7 +47,6 @@ module.exports = [
     {
         name: 'profile',
         caption: 'this is a tripple tile',
-        contentType: CONTENT_TYPES.THUMBNAIL,
         image: '/src/images/nabla.png',
         tiles: [
             { row: 2, col: 4 },
@@ -66,5 +56,3 @@ module.exports = [
     }
 
 ];
-
-module.exports.CONTENT_TYPES = CONTENT_TYPES;
