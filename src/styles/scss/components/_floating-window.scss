@@ -1,24 +1,46 @@
 @import "compass";
 
 .floating-window {
-  background-color: whitesmoke;
+  background-color: #424245;
   width: 50%;
   $margin: 1.5em;
   position: fixed;
   top: $margin;
   bottom: $margin;
   right: $margin;
-  @include box-shadow(0 0 10px 1px gray);
+  color: #ADADAD;
+  @include box-shadow(0 0 10px 1px black);
+}
+
+$floating-window-height: 5em;
+
+.floating-window__header {
+  background-color: #212022;
+  display: flex;
+  height: $floating-window-height;
+  @include flex-direction(row);
+}
+
+.floating-window__title {
+  @include flex(1 0 0);
+  display: flex;
+  padding-left: 1em;
+  @include align-items(center);
+  font-size: 2em;
+  color: #ADADAD;
 }
 
 .floating-window__close {
-  position: absolute;
-  $radius: 1em;
-  width: $radius*2;
-  height: $radius*2;
-  right: -$radius;
-  top: -$radius;
-  z-index: 10;
-  background: rgb(255, 146, 121);
-  @include border-radius($radius)
+  cursor: pointer;
+  color: #ADADAD;
+  background-color: #504F50;
+  @include flex(0 0 $floating-window-height);
+  display: flex;
+  @include justify-content(center);
+  @include align-items(center);
+
+  span {
+    font-size: 3em;
+  }
+
 }
