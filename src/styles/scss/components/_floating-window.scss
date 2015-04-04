@@ -1,0 +1,24 @@
+@import "compass";
+
+.floating-window {
+  background-color: whitesmoke;
+  width: 50%;
+  $margin: 1.5em;
+  position: fixed;
+  top: $margin;
+  bottom: $margin;
+  right: $margin;
+  @include box-shadow(0 0 10px 1px gray);
+}
+
+.floating-window__close {
+  position: absolute;
+  $radius: 1em;
+  width: $radius*2;
+  height: $radius*2;
+  right: -$radius;
+  top: -$radius;
+  z-index: 10;
+  background: rgb(255, 146, 121);
+  @include border-radius($radius)
+}

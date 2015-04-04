@@ -34,9 +34,10 @@ module.exports = [
     },
 
     {
-        name: 'tripple',
-        caption: 'this is a tripple tile',
+        name: 'Profile',
+        caption: 'This is me, PTX.',
         image: '/src/images/profile.jpg',
+        internalLink: 'profile',
         tiles: [
             { row: 2, col: 1 },
             { row: 1, col: 1 },
@@ -45,9 +46,10 @@ module.exports = [
     },
 
     {
-        name: 'profile',
-        caption: 'this is a tripple tile',
+        name: 'Math',
+        caption: 'I also have a Applied Mathematics degree.',
         image: '/src/images/nabla.png',
+        internalLink: 'math',
         tiles: [
             { row: 2, col: 4 },
             { row: 2, col: 5 },
