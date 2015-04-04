@@ -1,6 +1,6 @@
 'use strict';
 
-var _  = require('underscore');
+var _ = require('underscore');
 
 var outlines = require('../../hexagon-grid/outlines.js'),
     utils = require('../../utils.js');
@@ -9,24 +9,24 @@ module.exports = Ember.Component.extend({
 
     tagName: 'g',
 
-    classNames: ['content-tile', 'isSingle'],
+    classNames: ['content-tile', 'is-tripple'],
 
     grid: null, // required
 
     content: null, //required
 
-    edge: Ember.computed.alias('grid.edge'),
-
     tiles: Ember.computed.alias('content.tiles'),
 
     image: Ember.computed.alias('content.image'),
 
-    height: function(){
-        return this.get('edge')*2;
-    }.property('edge'),
+    edge: Ember.computed.alias('grid.edge'),
 
     width: function(){
-        return this.get('edge')*Math.sqrt(3);
+        return this.get('edge')*2*Math.sqrt(3);
+    }.property('edge'),
+
+    height: function(){
+        return this.get('edge')*3.5;
     }.property('edge'),
 
     uuid: function(){
@@ -41,58 +41,62 @@ module.exports = Ember.Component.extend({
         return this.get('uuid') + '__clip1';
     }.property('uuid'),
 
+    config: function(){
+        var grid = this.get('grid'),
+            tiles = this.get('tiles');
+        return outlines.getTrippleTileConfig(tiles, grid);
+    }.property('content'),
+
+    isUp: Ember.computed.alias('config.isUp'),
+
+    corner: function(){
+        var pos = this.get('config.position');
+        return { x: pos[0], y: pos[1] };
+    }.property('config.position'),
+
     center: function(){
 
         var grid = this.get('grid'),
             tiles = this.get('tiles'),
-            edge = this.get('edge'),
-            tile = tiles[0],
-            row = tile.row,
-            col = tile.col,
-            pos = grid.getTilePosition(row, col),
-            x = pos[0], y = pos[1],
-            deltaX = edge * Math.cos(Math.PI/6),
-            deltaY = edge;
+            edge = this.get('grid.edge'),
+            config = this.get('config'),
+            isUp = this.get('isUp'),
+            position = config.position,
+            centerX = position[0] + 2*edge * Math.cos(Math.PI/6),
+            centerY = position[1] + (isUp ? 2*edge : 1.5*edge);
 
-        return [ x+deltaX, y+deltaY ];
+        return [ centerX, centerY ];
 
     }.property('content'),
 
-    corner: function(){
-        var grid = this.get('grid'),
-            tiles = this.get('tiles'),
-            tile = tiles[0],
-            row = tile.row,
-            col = tile.col,
-            pos = grid.getTilePosition(row, col);
-        return { x: pos[0], y: pos[1] };
-    }.property('tiles'),
 
     getOutline: function(ratio){
         var edge = this.get('grid.edge'),
-            center = this.get('center');
-        return outlines.getHexagonPoints(center[0], center[1], edge*ratio);
+            center = this.get('center'),
+            config = this.get('config');
+        return outlines.getTripplePoints(config.isUp, center[0], center[1], edge, ratio);
     },
 
     outerPoints: function(){
         var RATIO = 0.95;
-        return this.getOutline(RATIO)
+        return this.getOutline(RATIO);
     }.property('center', 'content'),
-
 
     innerPoints: function(){
         var RATIO = 0.85;
-        return this.getOutline(RATIO)
+        return this.getOutline(RATIO);
     }.property('center', 'content'),
+
 
     hideOnInit: function(){
         Snap(this.get('element')).attr({ opacity: 0 });
     }.on('didInsertElement'),
 
+
     getReady: function(){
 
         var _self = this,
-            tiles = this.get('tiles'),
+            tiles = this.get('content.tiles'),
             grid = this.get('grid');
 
         grid.promiseTilesReady(tiles)
@@ -104,7 +108,7 @@ module.exports = Ember.Component.extend({
             .then(function(){
                 return utils.promiseSanpAnimate(Snap(_self.get('element')), { opacity: 1 }, 500, null);
             }).then(function(){
-                console.log('animated');
+                //console.log('animated');
             });
 
     }.on('init')

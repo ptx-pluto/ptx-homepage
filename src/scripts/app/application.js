@@ -1,8 +1,7 @@
 'use strict';
 
-var setupControllers = require('./controllers.js'),
-    setupRoutes = require('./router.js'),
-    setupViews = require('./views.js');
+var content = require('./content.js'),
+    ContentTile = require('./models/ContentTile.js');
 
 window.Promise = Promise || Ember.RSVP.Promise;
 
@@ -10,11 +9,31 @@ var App = window.App = Ember.Application.create({
     LOG_TRANSITIONS: true
 });
 
-App.HexagonGridComponent = require('./components/HexagonGridComponent.js');
-App.HexagonTileComponent = require('./components/HexagonTileComponent.js');
-App.ContentTileComponent = require('./components/ContentTileComponent.js');
-App.ContentTrippleTileComponent = require('./components/ContentTrippleTileComponent.js');
+//===========================================
+// Routes
+//===========================================
 
-setupRoutes(App);
-setupControllers(App);
-setupViews(App);
+App.ApplicationRoute = Ember.Route.extend({
+
+    model: function(){
+        return content.map(function(tile){
+            return ContentTile.create(tile);
+        });
+    }
+
+});
+
+App.IndexRoute = Ember.Route.extend({
+
+
+});
+
+
+//===========================================
+// Components
+//===========================================
+
+App.HexagonGridComponent = require('./components/HexagonGrid.js');
+App.HexagonTileComponent = require('./components/HexagonTile.js');
+App.ContentTileComponent = require('./components/ContentTile.js');
+App.ContentTrippleTileComponent = require('./components/ContentTrippleTile.js');
