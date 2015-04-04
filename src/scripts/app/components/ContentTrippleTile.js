@@ -2,10 +2,11 @@
 
 var _ = require('underscore');
 
-var outlines = require('../outlines.js'),
+var ContentTileMixin = require('../mixins/ContentTile.js'),
+    outlines = require('../outlines.js'),
     utils = require('../../utils.js');
 
-module.exports = Ember.Component.extend({
+module.exports = Ember.Component.extend(ContentTileMixin, {
 
     tagName: 'g',
 

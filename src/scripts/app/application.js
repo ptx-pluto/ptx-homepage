@@ -40,9 +40,15 @@ App.ApplicationRoute = Ember.Route.extend({
     },
 
     actions: {
+
         home: function(){
             this.transitionTo('index');
+        },
+
+        enter: function(link){
+            this.transitionTo(link);
         }
+
     }
 
 });
