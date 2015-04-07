@@ -1,11 +1,15 @@
-<polygon class="content-tile__outer" {{bind-attr points=outerPoints}}/>
+<polygon class="content-tile__outer" points="{{outerPoints}}"/>
 
-<clipPath {{bind-attr id=clip1id}}>
-    <polyline {{bind-attr points=innerPoints}}/>
+<clipPath id="{{clip1id}}">
+    <polyline points="{{innerPoints}}"/>
 </clipPath>
 
-<g class="content-tile__inner" {{bind-attr clip-path=clip1}}>
-    <image {{bind-attr x=corner.x y=corner.y xlink:href=image width=width height=height}}/>
+<g class="content-tile__inner" clip-path="{{clip1}}">
+    <image x="{{corner.x}}"
+           y="{{corner.y}}"
+           xlink:href="{{image}}"
+           width="{{width}}"
+           height="{{height}}"/>
 </g>
 
 
