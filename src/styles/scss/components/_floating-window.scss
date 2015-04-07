@@ -2,6 +2,7 @@
 
 .floating-window {
   background-color: #424245;
+  min-width: 60em;
   width: 50%;
   $margin: 1.5em;
   position: fixed;
