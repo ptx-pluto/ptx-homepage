@@ -95,9 +95,9 @@ module.exports = [
         image: '/src/images/cs.icon.png',
         internalLink: 'degrees',
         tiles: [
-            { row: 4, col: 4 },
-            { row: 5, col: 3 },
-            { row: 5, col: 4 }
+            { row: 3, col: 5 },
+            { row: 4, col: 5 },
+            { row: 4, col: 6 }
         ]
     }
 

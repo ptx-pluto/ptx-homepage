@@ -29,13 +29,6 @@ section {
   padding-top: 1em;
   padding-bottom: 1em;
 
-
-  em {
-    text-transform: uppercase;
-    color: darkblue;
-  }
-
-
 }
 
 // Profile
@@ -43,7 +36,14 @@ section {
 h1.profile-entry {
 
   font-weight: bold;
+  margin: 0.7em;
 
-  margin: 0.5em;
+  em {
+    color: #000000;
+  }
+
+  a, a:visited {
+    color: white;
+  }
 
 }
