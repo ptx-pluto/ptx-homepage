@@ -28,4 +28,22 @@ section {
   padding-right: 3em;
   padding-top: 1em;
   padding-bottom: 1em;
+
+
+  em {
+    text-transform: uppercase;
+    color: darkblue;
+  }
+
+
+}
+
+// Profile
+
+h1.profile-entry {
+
+  font-weight: bold;
+
+  margin: 0.5em;
+
 }

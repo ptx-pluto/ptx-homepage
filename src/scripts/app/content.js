@@ -69,6 +69,7 @@ module.exports = [
         name: 'WebSFM',
         caption: 'WebSFM is my work',
         image: '/src/images/websfm.icon.png',
+        internalLink: 'websfm',
         tiles: [
             { row: 3, col: 2 },
             { row: 3, col: 1 },
