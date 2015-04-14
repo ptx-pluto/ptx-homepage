@@ -44,6 +44,27 @@ module.exports = [
     },
 
     {
+        name: 'WebReddit',
+        caption: 'WebReddit',
+        image: '/src/images/webreddit.icon.png',
+        tiles: [
+            { row: 5, col: 3 },
+            { row: 5, col: 4 },
+            { row: 6, col: 4 }
+        ]
+    },
+
+    {
+        name: 'Ember.js',
+        caption: 'Ember.js',
+        image: '/src/images/ember.icon.png',
+        tiles: [
+            { row: 5, col: 5 }
+        ]
+    },
+
+
+    {
         name: 'JavaScript',
         caption: 'JavaScript',
         image: '/src/images/js.icon.png',
