@@ -102,7 +102,6 @@ module.exports = [
         name: 'Math',
         caption: 'I also have a Applied Mathematics degree.',
         image: '/src/images/math.icon.jpg',
-        internalLink: 'degrees',
         tiles: [
             { row: 2, col: 4 },
             { row: 2, col: 5 },
@@ -114,7 +113,6 @@ module.exports = [
         name: 'Computer Science',
         caption: 'I am Computer Science major',
         image: '/src/images/cs.icon.png',
-        internalLink: 'degrees',
         tiles: [
             { row: 3, col: 5 },
             { row: 4, col: 5 },

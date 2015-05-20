@@ -18,8 +18,6 @@ App.Router.map(function() {
 
     this.route('profile');
 
-    this.route('degrees');
-
     this.route('skills');
 
     this.route('websfm');
