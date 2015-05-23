@@ -80,20 +80,33 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'dist/application.min.js': [
-                        'venders/jquery/dist/jquery.min.js',
-                        'venders/ember/ember.min.js',
-                        'venders/snap.svg/dist/snap.svg-min.js',
+                    'dist/app.min.js': [
                         'build/scripts/templates.js',
                         'build/scripts/app.js'
                     ]
                 }
+            }
+        },
+
+        concat: {
+            options: {
+                //separator: ';'
+            },
+            dist: {
+                src: [
+                    'venders/jquery/dist/jquery.min.js',
+                    'venders/ember/ember.min.js',
+                    'venders/snap.svg/dist/snap.svg-min.js',
+                    'dist/app.min.js'
+                ],
+                dest: 'dist/script.min.js'
             }
         }
 
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-ember-templates');
@@ -107,7 +120,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('dist', [
         'build',
-        'uglify:dist'
+        'uglify:dist',
+        'concat:dist'
     ]);
 
 };
