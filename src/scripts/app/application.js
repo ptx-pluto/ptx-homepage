@@ -22,6 +22,8 @@ App.Router.map(function() {
 
     this.route('websfm');
 
+    this.route('webreddit');
+
 });
 
 
@@ -52,14 +54,10 @@ App.ApplicationRoute = Ember.Route.extend({
 });
 
 App.IndexRoute = Ember.Route.extend();
-
 App.ProfileRoute = Ember.Route.extend();
-
-App.DegreesRoute = Ember.Route.extend();
-
 App.SkillsRoute = Ember.Route.extend();
-
 App.WebsfmRoute = Ember.Route.extend();
+App.WebredditRoute = Ember.Route.extend();
 
 //===========================================
 // Components
