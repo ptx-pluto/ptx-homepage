@@ -24,10 +24,9 @@ img {
 
 section {
   font-size: 1.5em;
-  padding-left: 3em;
-  padding-right: 3em;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  margin: 1em;
+  font-family: Arvo;
+  line-height: 1.5em;
 
 }
 
@@ -42,8 +41,8 @@ h1.profile-entry {
     font-weight: bold;
   }
 
-  a, a:visited {
-    color: white;
-  }
+}
 
+a, a:visited {
+  color: white;
 }

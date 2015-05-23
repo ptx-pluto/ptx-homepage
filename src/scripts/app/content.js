@@ -47,6 +47,7 @@ module.exports = [
         name: 'WebReddit',
         caption: 'WebReddit',
         image: '/src/images/webreddit.icon.png',
+        internalLink: 'webreddit',
         tiles: [
             { row: 5, col: 3 },
             { row: 5, col: 4 },
@@ -58,6 +59,7 @@ module.exports = [
         name: 'Ember.js',
         caption: 'Ember.js',
         image: '/src/images/ember.icon.png',
+        internalLink: 'skills',
         tiles: [
             { row: 5, col: 5 }
         ]
@@ -90,7 +92,7 @@ module.exports = [
         name: 'WebSFM',
         caption: 'WebSFM is my work',
         image: '/src/images/websfm.icon.png',
-        internalLink: 'websfm',
+        externalLink: 'http://websfm.org',
         tiles: [
             { row: 3, col: 2 },
             { row: 3, col: 1 },
