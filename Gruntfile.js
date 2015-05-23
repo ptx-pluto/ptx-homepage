@@ -72,17 +72,31 @@ module.exports = function (grunt) {
                 }
             }
 
+        },
+
+        uglify: {
+            options: {
+                mangle: false
+            },
+            dist: {
+                files: {
+                    'dist/application.min.js': [
+                        'venders/jquery/dist/jquery.min.js',
+                        'venders/ember/ember.min.js',
+                        'venders/snap.svg/dist/snap.svg-min.js',
+                        'build/scripts/templates.js',
+                        'build/scripts/application.js'
+                    ]
+                }
+            }
         }
 
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-concat-sourcemap');
-    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-ember-templates');
-    grunt.loadNpmTasks('grunt-neuter');
     grunt.loadNpmTasks('grunt-browserify');
 
     grunt.registerTask('build', [
@@ -91,6 +105,9 @@ module.exports = function (grunt) {
         'compass:build'
     ]);
 
-    grunt.registerTask('dist', ['build', 'uglify:dist']);
+    grunt.registerTask('dist', [
+        'build',
+        'uglify:dist'
+    ]);
 
 };
