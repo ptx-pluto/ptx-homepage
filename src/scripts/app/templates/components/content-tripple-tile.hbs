@@ -5,11 +5,23 @@
 </clipPath>
 
 <g class="content-tile__inner" clip-path="{{clip1}}">
-    <image x="{{corner.x}}"
-           y="{{corner.y}}"
-           xlink:href="{{image}}"
-           width="{{width}}"
-           height="{{height}}"/>
+
+    {{#if content.externalLink}}
+        <a target="_blank" xlink:href="{{content.externalLink}}">
+            <image x="{{corner.x}}"
+                   y="{{corner.y}}"
+                   xlink:href="{{image}}"
+                   width="{{width}}"
+                   height="{{height}}"/>
+        </a>
+    {{else}}
+        <image x="{{corner.x}}"
+               y="{{corner.y}}"
+               xlink:href="{{image}}"
+               width="{{width}}"
+               height="{{height}}"/>
+    {{/if}}
+
 </g>
 
 

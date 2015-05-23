@@ -36,6 +36,7 @@ $floating-window-height: 5em;
   @include align-items(center);
   font-size: 2em;
   color: #ADADAD;
+  text-transform: uppercase;
 }
 
 .floating-window__close {
