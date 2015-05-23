@@ -1,0 +1,210 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/* line 6, ../../src/styles/scss/_reset.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+/* line 27, ../../src/styles/scss/_reset.scss */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* line 31, ../../src/styles/scss/_reset.scss */
+body {
+  line-height: 1;
+}
+
+/* line 34, ../../src/styles/scss/_reset.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 37, ../../src/styles/scss/_reset.scss */
+blockquote, q {
+  quotes: none;
+}
+
+/* line 40, ../../src/styles/scss/_reset.scss */
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* line 45, ../../src/styles/scss/_reset.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 1, ../../src/styles/scss/components/_hexagon-grid.scss */
+.hexagon-grid__container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+/* line 3, ../../src/styles/scss/components/_hexagon-tile.scss */
+.hexagon-tile:hover .hexagon-tile__outter {
+  stroke: white;
+}
+
+/* line 9, ../../src/styles/scss/components/_hexagon-tile.scss */
+.hexagon-tile__outter {
+  stroke: red;
+  stroke-width: 5;
+  stroke-linecap: square;
+}
+
+/* line 17, ../../src/styles/scss/components/_hexagon-tile.scss */
+.hexagon-tile__inner {
+  fill: #FF0526;
+}
+
+/* line 1, ../../src/styles/scss/components/_content-tile.scss */
+.content-tile {
+  cursor: pointer;
+}
+/* line 5, ../../src/styles/scss/components/_content-tile.scss */
+.content-tile:hover .content-tile__outer {
+  stroke: white;
+}
+
+/* line 11, ../../src/styles/scss/components/_content-tile.scss */
+.content-tile__outer {
+  stroke: red;
+  stroke-width: 5;
+  stroke-linecap: square;
+}
+
+/* line 3, ../../src/styles/scss/components/_floating-window.scss */
+.floating-window {
+  background-color: #424245;
+  min-width: 60em;
+  width: 50%;
+  position: fixed;
+  top: 1.5em;
+  bottom: 1.5em;
+  right: 1.5em;
+  color: #ADADAD;
+  -moz-box-shadow: 0 0 10px 1px black;
+  -webkit-box-shadow: 0 0 10px 1px black;
+  box-shadow: 0 0 10px 1px black;
+}
+
+/* line 18, ../../src/styles/scss/components/_floating-window.scss */
+.floating-window__header {
+  background-color: #212022;
+  display: flex;
+  height: 5em;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+
+/* line 25, ../../src/styles/scss/components/_floating-window.scss */
+.floating-window__body-container {
+  position: absolute;
+  top: 5em;
+  bottom: 0;
+  overflow: auto;
+}
+
+/* line 32, ../../src/styles/scss/components/_floating-window.scss */
+.floating-window__title {
+  -webkit-flex: 1 0 0;
+  flex: 1 0 0;
+  display: flex;
+  padding-left: 1em;
+  -webkit-align-items: center;
+  align-items: center;
+  font-size: 2em;
+  color: #ADADAD;
+  text-transform: uppercase;
+}
+
+/* line 42, ../../src/styles/scss/components/_floating-window.scss */
+.floating-window__close {
+  cursor: pointer;
+  color: #ADADAD;
+  background-color: #504F50;
+  -webkit-flex: 0 0 5em;
+  flex: 0 0 5em;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+/* line 51, ../../src/styles/scss/components/_floating-window.scss */
+.floating-window__close span {
+  font-size: 3em;
+}
+
+/* line 7, ../../src/styles/scss/main.scss */
+html, body {
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+/* line 14, ../../src/styles/scss/main.scss */
+img {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+/* line 20, ../../src/styles/scss/main.scss */
+.block-image {
+  display: block;
+  width: 100%;
+}
+
+/* line 25, ../../src/styles/scss/main.scss */
+section {
+  font-size: 1.5em;
+  margin: 1em;
+  font-family: Arvo;
+  line-height: 1.5em;
+}
+
+/* line 35, ../../src/styles/scss/main.scss */
+h1.profile-entry {
+  margin: 0.7em;
+}
+/* line 39, ../../src/styles/scss/main.scss */
+h1.profile-entry em {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* line 46, ../../src/styles/scss/main.scss */
+a, a:visited {
+  color: white;
+}
