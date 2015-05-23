@@ -85,7 +85,7 @@ module.exports = function (grunt) {
                         'venders/ember/ember.min.js',
                         'venders/snap.svg/dist/snap.svg-min.js',
                         'build/scripts/templates.js',
-                        'build/scripts/application.js'
+                        'build/scripts/app.js'
                     ]
                 }
             }
