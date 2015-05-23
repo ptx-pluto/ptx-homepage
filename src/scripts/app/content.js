@@ -91,7 +91,7 @@ module.exports = [
     {
         name: 'WebSFM',
         caption: 'WebSFM is my work',
-        image: '/src/images/websfm.icon.png',
+        image: '/src/images/websfm.png',
         externalLink: 'http://websfm.org',
         tiles: [
             { row: 3, col: 2 },
