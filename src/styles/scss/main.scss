@@ -1,8 +1,11 @@
+@import "compass";
 @import "reset";
 @import "components/hexagon-grid";
 @import "components/hexagon-tile";
 @import "components/content-tile";
 @import "components/floating-window";
+
+@include font-face("Arvo", font-files("/assets/fonts/Arvo-Regular.ttf"));
 
 html, body {
   background-color: black;
@@ -25,7 +28,7 @@ img {
 section {
   font-size: 1.5em;
   margin: 1em;
-  font-family: Arvo;
+  font-family: "Arvo";
   line-height: 1.5em;
 
 }
