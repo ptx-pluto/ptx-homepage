@@ -165,7 +165,11 @@ table {
   font-size: 3em;
 }
 
-/* line 7, ../../src/styles/scss/main.scss */
+@font-face {
+  font-family: "Arvo";
+  src: url(/assets/fonts/Arvo-Regular.ttf) format('truetype');
+}
+/* line 10, ../../src/styles/scss/main.scss */
 html, body {
   background-color: black;
   height: 100%;
@@ -173,38 +177,38 @@ html, body {
   position: relative;
 }
 
-/* line 14, ../../src/styles/scss/main.scss */
+/* line 17, ../../src/styles/scss/main.scss */
 img {
   padding: 0;
   margin: 0;
   border: 0;
 }
 
-/* line 20, ../../src/styles/scss/main.scss */
+/* line 23, ../../src/styles/scss/main.scss */
 .block-image {
   display: block;
   width: 100%;
 }
 
-/* line 25, ../../src/styles/scss/main.scss */
+/* line 28, ../../src/styles/scss/main.scss */
 section {
   font-size: 1.5em;
   margin: 1em;
-  font-family: Arvo;
+  font-family: "Arvo";
   line-height: 1.5em;
 }
 
-/* line 35, ../../src/styles/scss/main.scss */
+/* line 38, ../../src/styles/scss/main.scss */
 h1.profile-entry {
   margin: 0.7em;
 }
-/* line 39, ../../src/styles/scss/main.scss */
+/* line 42, ../../src/styles/scss/main.scss */
 h1.profile-entry em {
   color: #ffffff;
   font-weight: bold;
 }
 
-/* line 46, ../../src/styles/scss/main.scss */
+/* line 49, ../../src/styles/scss/main.scss */
 a, a:visited {
   color: white;
 }
