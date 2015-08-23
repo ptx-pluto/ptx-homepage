@@ -1,12 +1,9 @@
-'use strict';
+import _ from 'npm:underscore';
+import ContentTileMixin from '../mixins/content-tile';
+import outlines from '../utils/outlines';
+import utils from '../utils/utils';
 
-var _  = require('underscore');
-
-var ContentTileMixin = require('../mixins/ContentTile.js'),
-    outlines = require('../outlines.js'),
-    utils = require('../../utils.js');
-
-module.exports = Ember.Component.extend(ContentTileMixin, {
+export default Ember.Component.extend(ContentTileMixin, {
 
     tagName: 'g',
 
