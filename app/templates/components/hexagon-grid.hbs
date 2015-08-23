@@ -1,8 +1,8 @@
 <svg height="{{height}}" width="{{width}}" class="hexagon-grid">
 
-    {{#each row in rowsArray}}
+    {{#each rowsArray as |row|}}
 
-        {{#each col in colsArray}}
+        {{#each colsArray as |col|}}
 
             {{hexagon-tile row=row col=col grid=this}}
 
@@ -10,7 +10,7 @@
 
     {{/each}}
 
-    {{#each entry in content}}
+    {{#each content as |entry|}}
 
         {{#if entry.isSingleTile}}
             {{content-tile content=entry grid=this}}
