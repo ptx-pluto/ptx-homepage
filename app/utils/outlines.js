@@ -1,4 +1,11 @@
-'use strict';
+export default {
+  getHexagonArray: getHexagonArray,
+  getHexagonPoints: getHexagonPoints,
+  getTripleHexagonArray: getTripleHexagonArray,
+  getTripplePoints: getTripplePoints,
+  getTrippleTileConfig: getTrippleTileConfig
+};
+
 
 /**
  *
@@ -7,7 +14,7 @@
  * @param {number} edge
  * @returns number[]
  */
-module.exports.getHexagonArray = function(centerX, centerY, edge){
+function getHexagonArray(centerX, centerY, edge){
     var dist = edge * Math.cos(Math.PI/6);
     return [
         centerX, centerY-edge,
@@ -29,7 +36,7 @@ module.exports.getHexagonArray = function(centerX, centerY, edge){
      centerX, centerY-edge
      ];
      */
-};
+}
 
 /**
  *
@@ -38,7 +45,7 @@ module.exports.getHexagonArray = function(centerX, centerY, edge){
  * @param {number} edge
  * @returns string
  */
-module.exports.getHexagonPoints = function(centerX, centerY, edge){
+function getHexagonPoints(centerX, centerY, edge){
 
     return exports.getHexagonArray(centerX,centerY, edge)
         .reduce(function(memo, val, index){
@@ -56,19 +63,19 @@ module.exports.getHexagonPoints = function(centerX, centerY, edge){
 
         }, '');
 
-};
+}
 
 
-module.exports.getTripleHexagonArray = function(isUp, centerX, centerY, edge, ratio){
+function getTripleHexagonArray(isUp, centerX, centerY, edge, ratio){
     if (isUp) {
         return getUpTrippleHexagonArray(centerX, centerY, edge, ratio);
     }
     else {
         return getDownTrippleHexagonArray(centerX, centerY, edge, ratio);
     }
-};
+}
 
-module.exports.getTripplePoints = function(isUp, centerX, centerY, edge, ratio){
+function getTripplePoints(isUp, centerX, centerY, edge, ratio){
     return exports.getTripleHexagonArray(isUp, centerX, centerY, edge, ratio)
         .reduce(function(memo, val, index){
             if (index === 0) {}
@@ -76,7 +83,7 @@ module.exports.getTripplePoints = function(isUp, centerX, centerY, edge, ratio){
             else memo += ',';
             return memo + val;
         }, '');
-};
+}
 
 function getUpTrippleHexagonArray(centerX, centerY, edge, ratio){
     var dist = edge * Math.cos(Math.PI/6),
@@ -145,7 +152,7 @@ function getDownTrippleHexagonArray(centerX, centerY, edge, ratio){
  * @param grid
  * @returns {{isUp: Boolean, position}}
  */
-module.exports.getTrippleTileConfig = function(tiles, grid){
+function getTrippleTileConfig(tiles, grid){
     var offsets, isUp;
     if (tiles[0].row === tiles[1].row) {
         arrangeTiles(tiles, 0, 1, 2);
@@ -224,4 +231,4 @@ module.exports.getTrippleTileConfig = function(tiles, grid){
         }
     }
 
-};
+}
