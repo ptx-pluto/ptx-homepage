@@ -1,21 +1,25 @@
-var _ = require('underscore');
+import _ from 'npm:underscore';
 
-module.exports.iterDiscreteColor = iterDiscreteColor;
-module.exports.complexProduct = complexProduct;
-module.exports.complexSquare = complexSquare;
-module.exports.complexModule = complexModule;
-module.exports.promiseReady = promiseReady;
-module.exports.promiseImg = promiseImg;
-module.exports.promiseDelay = promiseDelay;
+export default {
+  iterDiscreteColor: iterDiscreteColor,
+  complexProduct: complexProduct,
+  complexSquare: complexSquare,
+  complexModule: complexModule,
+  promiseReady: promiseReady,
+  promiseImg: promiseImg,
+  promiseDelay: promiseDelay,
+  promiseSanpAnimate: promiseSanpAnimate
+};
 
 
-module.exports.promiseSanpAnimate = function($element, ps, duration, ease){
+
+function promiseSanpAnimate($element, ps, duration, ease){
     return new Promise(function(resolve, reject){
         $element.animate(ps, duration, ease, function(){
             resolve();
         })
     });
-};
+}
 
 
 /**
