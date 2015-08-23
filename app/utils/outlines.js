@@ -47,7 +47,7 @@ function getHexagonArray(centerX, centerY, edge){
  */
 function getHexagonPoints(centerX, centerY, edge){
 
-    return exports.getHexagonArray(centerX,centerY, edge)
+    return getHexagonArray(centerX,centerY, edge)
         .reduce(function(memo, val, index){
             if (index === 0) {
 
@@ -76,7 +76,7 @@ function getTripleHexagonArray(isUp, centerX, centerY, edge, ratio){
 }
 
 function getTripplePoints(isUp, centerX, centerY, edge, ratio){
-    return exports.getTripleHexagonArray(isUp, centerX, centerY, edge, ratio)
+    return getTripleHexagonArray(isUp, centerX, centerY, edge, ratio)
         .reduce(function(memo, val, index){
             if (index === 0) {}
             else if (index % 2 === 0) { memo += ' '; }
