@@ -17,7 +17,7 @@ function promiseSanpAnimate($element, ps, duration, ease){
     return new Promise(function(resolve, reject){
         $element.animate(ps, duration, ease, function(){
             resolve();
-        })
+        });
     });
 }
 

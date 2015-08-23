@@ -79,8 +79,8 @@ function getTripplePoints(isUp, centerX, centerY, edge, ratio){
     return exports.getTripleHexagonArray(isUp, centerX, centerY, edge, ratio)
         .reduce(function(memo, val, index){
             if (index === 0) {}
-            else if (index % 2 === 0) memo += ' ';
-            else memo += ',';
+            else if (index % 2 === 0) { memo += ' '; }
+            else { memo += ','; }
             return memo + val;
         }, '');
 }

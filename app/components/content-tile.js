@@ -75,13 +75,13 @@ export default Ember.Component.extend(ContentTileMixin, {
 
     outerPoints: function(){
         var RATIO = 0.95;
-        return this.getOutline(RATIO)
+        return this.getOutline(RATIO);
     }.property('center', 'content'),
 
 
     innerPoints: function(){
         var RATIO = 0.85;
-        return this.getOutline(RATIO)
+        return this.getOutline(RATIO);
     }.property('center', 'content'),
 
     hideOnInit: function(){
@@ -98,7 +98,7 @@ export default Ember.Component.extend(ContentTileMixin, {
             .then(function(ts){
                 return Promise.all(ts.map(function(ti){
                     return utils.promiseSanpAnimate(Snap(ti.get('element')), { opacity: 0 }, 500, null);
-                }))
+                }));
             })
             .then(function(){
                 return utils.promiseSanpAnimate(Snap(_self.get('element')), { opacity: 1 }, 500, null);
