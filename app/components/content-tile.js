@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import _ from 'npm:underscore';
 import ContentTileMixin from '../mixins/content-tile';
 import outlines from '../utils/outlines';

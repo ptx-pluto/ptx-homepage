@@ -1,8 +1,7 @@
-'use strict';
+import Ember from 'ember';
+import _ from 'npm:underscore';
 
-var _ = require('underscore');
-
-module.exports = Ember.Component.extend({
+export default Ember.Component.extend({
 
     tagName: 'div',
 

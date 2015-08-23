@@ -1,14 +1,13 @@
-'use strict';
+import Ember from 'ember';
+import _ from 'npm:underscore';
+import outlines from '../utils/outlines';
+import utils from '../utils/utils';
+import settings from '../settings';
 
-var _ = require('underscore');
-
-var outlines = require('../outlines.js'),
-    settings = require('../settings'),
-    TILE_OUTLINE_DURATION = settings.TILE_OUTLINE_DURATION;
-
+var TILE_OUTLINE_DURATION = settings.TILE_OUTLINE_DURATION;
 var INNER_RATIO = 0.85;
 
-module.exports = Ember.Component.extend({
+export default Ember.Component.extend({
 
     tagName: 'g',
 
