@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import ContentTile from '../models/content-tile';
-import content from './content';
+import content from '../content';
 
 export default Ember.Route.extend({
 
