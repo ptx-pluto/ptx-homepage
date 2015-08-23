@@ -3,7 +3,7 @@ export default [
     {
         name: 'Weibo',
         caption: 'My weibo profile',
-        image: '/src/images/weibo.png',
+        image: '/asset/images/weibo.png',
         externalLink: 'http://weibo.com/u/2479339722',
         tiles: [
             { row: 4, col: 3 }
@@ -13,7 +13,7 @@ export default [
     {
         name: 'Twitter',
         caption: 'My twitter profile',
-        image: '/src/images/twitter.png',
+        image: '/asset/images/twitter.png',
         externalLink: 'https://twitter.com/__PTX__',
         tiles: [
             { row: 2, col: 3 }
@@ -24,7 +24,7 @@ export default [
     {
         name: 'Github',
         caption: 'My Github account',
-        image: '/src/images/github.png',
+        image: '/asset/images/github.png',
         externalLink: 'https://github.com/ptx-pluto',
         tiles: [
             { row: 3, col: 3 }
@@ -34,7 +34,7 @@ export default [
     {
         name: 'Arch Linux',
         caption: 'Arch Linux',
-        image: '/src/images/arch.icon.png',
+        image: '/asset/images/arch.icon.png',
         internalLink: 'skills',
         tiles: [
             { row: 5, col: 2 }
@@ -44,7 +44,7 @@ export default [
     {
         name: 'WebReddit',
         caption: 'WebReddit',
-        image: '/src/images/webreddit.icon.png',
+        image: '/asset/images/webreddit.icon.png',
         internalLink: 'webreddit',
         tiles: [
             { row: 5, col: 3 },
@@ -56,7 +56,7 @@ export default [
     {
         name: 'Ember.js',
         caption: 'Ember.js',
-        image: '/src/images/ember.icon.png',
+        image: '/asset/images/ember.icon.png',
         internalLink: 'skills',
         tiles: [
             { row: 5, col: 5 }
@@ -67,7 +67,7 @@ export default [
     {
         name: 'JavaScript',
         caption: 'JavaScript',
-        image: '/src/images/js.icon.png',
+        image: '/asset/images/js.icon.png',
         internalLink: 'skills',
         tiles: [
             { row: 1, col: 3 }
@@ -77,7 +77,7 @@ export default [
     {
         name: 'Profile',
         caption: 'This is me, PTX.',
-        image: '/src/images/profile.jpg',
+        image: '/asset/images/profile.jpg',
         internalLink: 'profile',
         tiles: [
             { row: 2, col: 1 },
@@ -89,7 +89,7 @@ export default [
     {
         name: 'WebSFM',
         caption: 'WebSFM is my work',
-        image: '/src/images/websfm.png',
+        image: '/asset/images/websfm.png',
         externalLink: 'http://websfm.org',
         tiles: [
             { row: 3, col: 2 },
@@ -101,7 +101,7 @@ export default [
     {
         name: 'Math',
         caption: 'I also have a Applied Mathematics degree.',
-        image: '/src/images/math.icon.jpg',
+        image: '/asset/images/math.icon.jpg',
         tiles: [
             { row: 2, col: 4 },
             { row: 2, col: 5 },
@@ -112,7 +112,7 @@ export default [
     {
         name: 'Computer Science',
         caption: 'I am Computer Science major',
-        image: '/src/images/cs.icon.png',
+        image: '/asset/images/cs.icon.png',
         tiles: [
             { row: 3, col: 5 },
             { row: 4, col: 5 },
