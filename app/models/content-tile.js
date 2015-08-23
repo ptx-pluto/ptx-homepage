@@ -1,6 +1,6 @@
-'use strict';
+import Ember from 'ember';
 
-module.exports = Ember.Object.extend({
+export default Ember.Object.extend({
 
     isSingleTile: function(){
         return this.get('tiles.length') === 1;

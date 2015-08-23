@@ -1,4 +1,6 @@
-module.exports = Ember.Mixin.create({
+import Ember from 'ember';
+
+export default Ember.Mixin.create({
 
     click: function(){
         var link = this.get('content.internalLink');
