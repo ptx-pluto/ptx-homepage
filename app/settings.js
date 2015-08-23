@@ -1,3 +1,3 @@
-'use strict';
-
-module.exports.TILE_OUTLINE_DURATION = 750;
+var settings = {};
+settings.TILE_OUTLINE_DURATION = 750;
+export default settings;
